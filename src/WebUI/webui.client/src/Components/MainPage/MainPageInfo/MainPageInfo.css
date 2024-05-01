@@ -84,3 +84,9 @@
     margin-bottom: 40px;
     color: #221004;
 }
+
+.booking-form{
+    align-items:center;
+    display: flex;
+    flex-direction:column;
+}

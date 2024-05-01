@@ -3,6 +3,7 @@ import './App.css';
 import MainPageInfo from './Components/MainPage/MainPageInfo/MainPageInfo.jsx'
 import MainPageOurProducts from './Components/MainPage/MainPageOurProducts/MainPageOurProducts.jsx'
 import CoffeeMenu from './Components/MainPage/CoffeeMenu/CoffeeMenu.jsx'
+import MainPageBookTable from './Components/MainPage/MainPageBookTable/MainPageBookTable.jsx'
 
 function App() {
     return (
@@ -17,7 +18,10 @@ function App() {
             </div>
             <MainPageOurProducts />
 
-            <CoffeeMenu/>
+            <CoffeeMenu />
+            <MainPageBookTable />
+
+
         </div>
     );
 }

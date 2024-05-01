@@ -1,0 +1,64 @@
+.MainPageBookTable_Title {
+    font-size: 60px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #221004;
+}
+
+.MainPageBookTable_Text {
+    font-size: 25px;
+    font-weight: 700;
+    margin-bottom: 40px;
+    color: #221004;
+}
+.MainPageBookTable{
+    width:100%;
+    text-align:center;
+    margin-top:1110px;
+}
+
+
+.input-group {
+    margin-bottom: 15px;
+}
+.input-field-message {
+    background-color: #F5F0EA;
+    width: 860px;
+    height:170px;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+.input-field {
+    color:black;
+    background-color: #F5F0EA;
+    width: 405px;
+    height:50px;
+    padding:10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+    .input-field:focus {
+        border-color: #555; 
+        outline: none;
+    }
+.uppart-booking-form {
+    color: black;
+    display: flex;
+}
+
+.uppart-booking-form{
+    align-content:center;
+    align-items:center;
+    justify-content:center;
+    margin:0 auto;
+}
+.booking-form-left{
+    margin-right:15px;
+}
+.booking-form-right {
+    margin-left: 15px;
+}
