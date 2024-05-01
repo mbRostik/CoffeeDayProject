@@ -1,0 +1,56 @@
+.coffee-menu {
+    max-width:100%;
+    padding: 20px;
+    text-align: center;
+    color: #000000;
+    margin-bottom: 50px;
+    margin-top:90px;
+}
+.main-coffee-menu {
+    margin-top: 100px;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    background-image: url(back.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+}
+.head-text {
+    font-size: 48px;
+    font-weight: 700;
+    color: #221004;
+}
+
+.description-text {
+    color: #221004;
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.main-coffee-components {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1010px;
+    margin: 0 auto;
+
+}
+
+.menu-item {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px dotted #333;
+    margin-bottom: 10px;
+}
+
+.price {
+    font-weight: bold;
+}
+
+.main-coffee-menu-buttons {
+    margin-top:50px;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}

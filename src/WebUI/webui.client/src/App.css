@@ -1,0 +1,93 @@
+﻿.All_container
+{
+    max-width:1300px;
+    width:1300px;
+    margin: 0 auto;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+}
+.Main_container{
+    width:100%;
+    margin-top:30px;
+}
+.Centre_Div {
+    width: 100%;
+    height: 100%;
+}
+.Centre {
+    width: 100%;
+}
+.Brown_Small_Button {
+    text-align:center;
+    justify-content:center;
+    align-items: center;
+    align-content: center;
+    max-width:210px;
+    max-height:60px;
+    border-radius:10px;
+    background-color: #734022;
+    padding: 20px 40px;
+    font-size:18px;
+    font-weight:700;
+    color: white;
+    cursor: pointer;
+}
+
+.Brown_Medium_Button {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    max-width: 120px;
+    max-height: 20px;
+    border-radius: 10px;
+    background-color: #734022;
+    padding: 20px 90px;
+    font-size: 18px;
+    font-weight: 700;
+    color: white;
+    cursor: pointer;
+}
+
+.Brown_Big_Button {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    max-width: 215px;
+    max-height: 20px;
+    border-radius: 10px;
+    background-color: #734022;
+    padding: 30px 200px;
+    font-size: 18px;
+    font-weight: 700;
+    color: white;
+    cursor: pointer;
+}
+.Coffee_Line {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 65px;
+    background-image: linear-gradient(90deg, #88481C, #221207);
+    display:flex;
+    justify-content:space-between;
+    text-align:center;
+    align-items:center;
+}
+
+.Coffee_Line_Text{
+    font-size:26px;
+    font-weight:700;
+    color:white;
+}
+
+
+.Coffee_Line_Text:first-child {
+    margin-left:15px;
+}
+
+    .Coffee_Line_Text:last-child {
+        margin-right: 15px;
+    }

@@ -1,0 +1,63 @@
+.MainPageOurProducts_Title {
+    font-size: 48px;
+    font-weight: 700;
+    color: #221004;
+}
+
+.MainPageOurProducts_Text {
+    font-size: 24px;
+    font-weight: 400;
+    color: #221004;
+}
+.MainPageOurProducts_Products{
+    width:100%;
+    display: flex;
+    justify-content:space-between;
+}
+.MainPageOurProducts_Product {
+    background-color: #FFF9F1;
+    border-radius: 10px;
+    width: 360px;
+    height: 430px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 5px;
+    position: relative;
+    overflow: visible;
+}
+
+.MainPageOurProduct_Product_Cup {
+    max-width: 360px;
+    max-height: 270px;
+    margin-top: -120px;
+    margin-bottom: 50px;
+}
+
+.MainPageOurProducts_Info{
+    margin-bottom:155px;
+}
+
+.MainPageOurProduct_Product_Blend {
+    color: #221004;
+    font-weight: 400;
+    font-size: 18px
+}
+
+.MainPageOurProduct_Product_Name {
+    color: #221004;
+    font-weight: 700;
+    font-size: 24px
+}
+
+.MainPageOurProduct_Product_Price {
+    color: #221004;
+    font-weight: 400;
+    font-size: 36px;
+    margin-bottom:30px;
+}
+
+.MainPageOurProducts{
+    width:100%;
+    margin-top:350px;
+}

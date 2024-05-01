@@ -1,0 +1,30 @@
+.coffee-component {
+    display: flex;
+    align-items: center;
+    max-width: 401px;
+    margin-top: 20px;
+}
+
+.coffee-image {
+    width: 100px;
+    height: 84px;
+    object-fit: cover;
+}
+
+.coffee-details {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+
+.main-text {
+    font-weight: 400;
+    font-size: 20px;
+    color: #221004;
+}
+
+.element-description-text {
+    font-weight: 400;
+    font-size: 16px;
+    color: #CDC4B9;
+}
