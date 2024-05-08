@@ -7,6 +7,7 @@ using Duende.IdentityServer.Events;
 using Duende.IdentityServer.Services;
 using IdentityModel;
 using MassTransit;
+using MessageBus.Messages.User;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -92,14 +93,13 @@ public class Callback : PageModel
             else
             {
                 user = await AutoProvisionUserAsync(provider, providerUserId, externalUser.Claims);
-                //UserCreationDTO creationEvent = new UserCreationDTO
-                //{
-                //    UserId = user.Id,
-                //    UserEmail = user.Email,
-                //    UserName = user.UserName,
-                //    Status = MessageBus.Models.Statuses.UserCreationStatuses.IdentityServer_Created
-                //};
-                //await _publisher.Publish<IUserCreate_SendEvent_From_IdentityServer>(new { CorrelationId = Guid.NewGuid(), Data = creationEvent });
+                UserCreationEvent creationEvent = new UserCreationEvent
+                {
+                    UserId = user.Id,
+                    Email = user.Email,
+                    UserName = user.UserName
+                };
+                await _publisher.Publish(creationEvent);
             }
             // this might be where you might initiate a custom workflow for user registration
             // in this sample we don't show how that would be done, as our sample implementation

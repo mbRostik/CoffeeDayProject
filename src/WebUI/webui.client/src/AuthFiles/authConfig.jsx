@@ -1,7 +1,7 @@
 import { UserManager  } from 'oidc-client';
 
 const config = {
-    authority: 'https://localhost:7017',
+    authority: 'https://localhost:7174',
     client_id: 'interactive',
     client_secret: 'OnlyUserKnowsThisSecret',
     redirect_uri: 'https://localhost:5173/signin-oidc',

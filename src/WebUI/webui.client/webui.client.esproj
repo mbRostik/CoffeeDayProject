@@ -12,6 +12,7 @@
     <Folder Include="src\Components\ContactUs\" />
     <Folder Include="src\Components\Bag\" />
     <Folder Include="src\Components\MainPage\MainPageOurProducts\" />
+    <Folder Include="src\Components\Menu\" />
     <Folder Include="src\Components\Profile\" />
   </ItemGroup>
 </Project>

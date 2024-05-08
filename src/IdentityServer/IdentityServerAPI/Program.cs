@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Localization;
 using RabbitMQ.Client;
 using System.Net;
 using IdentityServer.Infrastructure.Data;
+using MessageBus.Messages.User;
 var builder = WebApplication.CreateBuilder(args);
 
 var assembly = typeof(Program).Assembly.GetName().Name;
@@ -99,6 +100,21 @@ builder.Services.AddAuthentication()
         options.ClientSecret = googleAuth["ClientSecret"];
 
     });
+
+builder.Services.AddMassTransit(x =>
+{
+    x.UsingRabbitMq((cxt, cfg) =>
+    {
+        cfg.Host("localhost", "/", h =>
+        {
+            h.Username("guest");
+            h.Password("guest");
+        });
+
+        cfg.Publish<UserCreationEvent>(p => p.ExchangeType = ExchangeType.Fanout);
+    });
+
+});
 var app = builder.Build();
 
 
@@ -143,7 +159,7 @@ app.UseEndpoints(endpoints =>
     endpoints.MapDefaultControllerRoute();
 });
 
-SeedData.EnsureSeedData(app);
+//SeedData.EnsureSeedData(app);
 
 app.Run();
 
