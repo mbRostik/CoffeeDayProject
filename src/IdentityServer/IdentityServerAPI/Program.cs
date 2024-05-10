@@ -159,7 +159,7 @@ app.UseEndpoints(endpoints =>
     endpoints.MapDefaultControllerRoute();
 });
 
-//SeedData.EnsureSeedData(app);
+SeedData.EnsureSeedData(app);
 
 app.Run();
 

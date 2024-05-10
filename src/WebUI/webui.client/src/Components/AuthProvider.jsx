@@ -22,7 +22,7 @@ export const AuthProvider = ({ children }) => {
     const setUserDataState = (newUserData) => setUserData(newUserData);
     async function fetchUserData(accessToken) {
         try {
-            const response = await fetch(`${config.apiBaseUrl}/user`, {
+            const response = await fetch(`${config.apiBaseUrl}/GetUserProfile`, {
                 headers: { 'Authorization': `Bearer ${accessToken}` }
             });
 
@@ -48,6 +48,7 @@ export const AuthProvider = ({ children }) => {
             const user = await userManager.getUser();
             if (user) {
                 setUser(user);
+                console.log(user.access_token);
                 const userData = await fetchUserData(user.access_token);
                 if (userData) {
                     setIsAuthorized(true);

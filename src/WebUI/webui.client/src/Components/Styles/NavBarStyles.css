@@ -49,6 +49,11 @@
     max-width:22px;
     height:27px;
 }
+
+.nav-profile {
+    max-height: 50px;
+    object-fit: cover;
+}
 .NavBarButton_Login {
     padding: 11px 26px;
     background-color: white;

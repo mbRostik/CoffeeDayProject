@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
 import './MainPageInfo.css';
+import { useAuth } from '../../AuthProvider';
 
 function MainPageInfo() {
+    const { user, userData, loading, isAuthorized } = useAuth();
+
     return (
         <div className="MainPageInfo">
             <div className="MainPageInfo_FirstContainer">
@@ -21,7 +24,11 @@ function MainPageInfo() {
 
                     <div className="MainPageInfo_FC_Buttons">
                         <div className="Brown_Small_Button">Explore our products -{'>'} </div>
-                        <div className="MainPageInfo_LoginButton">Log In / Sign Up </div>
+
+                        
+                        {!isAuthorized && (
+                            <div className="MainPageInfo_LoginButton">Log In / Sign Up</div>
+                        )}
                     </div>
                     <div className="MainPageInfo_FC_Numbers"></div>
                 </div>

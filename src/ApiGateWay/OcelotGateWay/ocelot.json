@@ -1,0 +1,72 @@
+{
+  "Routes": [
+    {
+      "UpstreamPathTemplate": "/ocelot/GetUserProfile",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5235
+        }
+      ],
+      "DownstreamPathTemplate": "/User/GetUserProfile",
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 5,
+        "DurationOfBreak": 10000,
+        "TimeoutValue": 2000
+      }
+    },
+
+    {
+      "UpstreamPathTemplate": "/ocelot/userUpdate",
+      "UpstreamHttpMethod": [ "Post" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5235
+        }
+      ],
+      "DownstreamPathTemplate": "/User/ChangeUserSettings",
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 5,
+        "DurationOfBreak": 10000,
+        "TimeoutValue": 2000
+      }
+    },
+
+    {
+      "UpstreamPathTemplate": "/ocelot/userProfilePhotoUpload",
+      "UpstreamHttpMethod": [ "Post" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5235
+        }
+      ],
+      "DownstreamPathTemplate": "/User/UploadProfilePhoto",
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 5,
+        "DurationOfBreak": 10000,
+        "TimeoutValue": 2000
+      }
+    }
+  ],
+
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:5000",
+    "QoSOptions": {
+      "ExceptionsAllowedBeforeBreaking": 5,
+      "DurationOfBreak": 10000,
+      "TimeoutValue": 2000
+    },
+    "CorsOptions": {
+      "policyName": "CorsPolicy",
+      "allowedOrigins": [ "*" ],
+      "allowedMethods": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ],
+      "allowedHeaders": [ "*" ]
+    }
+  }
+}

@@ -9,6 +9,7 @@ import SignOut_CallBackPage from './AuthFiles/SignOut_CallBackPage';
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import NavBar from './Components/NavBar/NavBar';
+import Profile from './Components/Profile/Profile';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -23,6 +24,10 @@ function AppContainer() {
                 <div className="Centre_Div">
                     <div className="Centre">
                         <Routes>
+                            <Route path="/signin-oidc" element={<SignIn_CallbackPage />} />
+                            <Route path="/signout-callback-oidc" element={<SignOut_CallBackPage />} />
+                            <Route path="/profile" element={<Profile />} />
+
                             <Route path="/" element={<App />} />
                         </Routes>
                     </div>

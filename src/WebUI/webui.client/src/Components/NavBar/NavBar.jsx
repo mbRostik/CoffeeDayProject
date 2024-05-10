@@ -64,23 +64,54 @@ const NavBar = () => {
                     </div>
 
                 </div>
-            ) : (
-                <div className="NavBarMenuAuth">
-                    {userData && (
-                        <div className="NavBarMenu">
-                            <div className="NavProfile">
-                                <NavLink to="/profile" className="NavBarButton">
-                                    {userData.nickName}
-                                    <img
-                                        className="NavBarAvatar"
-                                        src={userData.photo ? `data:image/jpeg;base64,${userData.photo}` : "path_to_default_avatar_image.jpg"}
-                                        alt={userData.nickName || "Profile"}
-                                    />
-                                </NavLink>
-                            </div>
+                ) : (
+
+                        <div className="NavBarMenuUnAuth">
+                            <NavLink to="/" className="nav-item">
+                                <div>Home</div>
+                            </NavLink>
+
+                            <NavLink to="/about-us" className="nav-item">
+                                <div>About Us</div>
+                            </NavLink>
+
+                            <NavLink to="/menu" className="nav-item">
+                                <div>Menu</div>
+                            </NavLink>
+
+                            <NavLink to="/order-table" className="nav-item">
+                                <div>Order Table</div>
+                            </NavLink>
+
+                            <NavLink to="/" className="nav-item">
+                                <div>
+                                    <img className="nav-logo" src="pngwing.com.png" alt="Logo" />
+                                </div>
+                            </NavLink>
+
+
+                            <NavLink to="/shop" className="nav-item">
+                                <div>Shop</div>
+                            </NavLink>
+
+                            <NavLink to="/contact-us" className="nav-item">
+                                <div>Contact Us</div>
+                            </NavLink>
+
+                            <NavLink to="/bag" className="nav-item">
+                                <div>
+                                    <img className="nav-bag" src="sdvf.png" alt="Bag" />
+                                </div>
+                            </NavLink>
+                            
+                            <NavLink to="/profile" className="nav-item">
+                                <img
+                                    className="nav-profile"
+                                    src={userData.photo ? `data:image/jpeg;base64,${userData.photo}` : "profile.png"}
+                                    alt={userData.nickName || "Profile"}
+                                />
+                            </NavLink>
                         </div>
-                    )}
-                </div>
             )}
         </div>
     );
