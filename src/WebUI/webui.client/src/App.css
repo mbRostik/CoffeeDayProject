@@ -25,7 +25,7 @@
     align-content: center;
     max-width:210px;
     max-height:60px;
-    border-radius:10px;
+    border-radius:15px;
     background-color: #734022;
     padding: 20px 40px;
     font-size:18px;
@@ -41,7 +41,7 @@
     align-content: center;
     max-width: 120px;
     max-height: 20px;
-    border-radius: 10px;
+    border-radius: 15px;
     background-color: #734022;
     padding: 20px 90px;
     font-size: 18px;
@@ -57,7 +57,7 @@
     align-content: center;
     max-width: 215px;
     max-height: 20px;
-    border-radius: 10px;
+    border-radius: 15px;
     background-color: #734022;
     padding: 30px 200px;
     font-size: 18px;
@@ -92,3 +92,6 @@
     .Coffee_Line_Text:last-child {
         margin-right: 15px;
     }
+.book-table {
+    margin-top: 1110px;
+}

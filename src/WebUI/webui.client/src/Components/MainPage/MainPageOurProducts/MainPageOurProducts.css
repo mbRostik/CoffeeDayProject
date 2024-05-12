@@ -15,7 +15,7 @@
     justify-content:space-between;
 }
 .MainPageOurProducts_Product {
-    background-color: white;
+    background-color: #FFF9F1;
     border-radius: 10px;
     width: 360px;
     height: 430px;
@@ -25,6 +25,7 @@
     padding-top: 5px;
     position: relative;
     overflow: visible;
+    box-shadow: 4px 4px 31px rgba(34, 16, 4, 0.1);
 }
 
 .MainPageOurProduct_Product_Cup {

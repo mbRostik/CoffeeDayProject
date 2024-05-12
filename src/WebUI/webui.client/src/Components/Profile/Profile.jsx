@@ -25,7 +25,7 @@ const Profile = () => {
             setDateOfBirth(new Date(userData.dateOfBirth).toISOString().slice(0, 10));
         }
         catch {
-            console.log("lkrjwfhbkwhfgwrkgf");
+            console.log("Excheption while setting user info");
         }
 
     }, [isAuthorized]);

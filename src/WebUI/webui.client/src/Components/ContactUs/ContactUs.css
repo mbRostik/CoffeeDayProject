@@ -1,0 +1,74 @@
+
+.custom-contact-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 900px;
+    font-family: Arial, sans-serif;
+}
+
+.form-row {
+    width:900px;
+    display: flex;
+    justify-content:space-between;
+    margin-bottom: 10px;
+}
+.ContactUsDiv{
+    margin-top:50px;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    text-align: center;
+}
+.ContactUs_Title{
+    font-weight: 700;
+    font-size: 40px;
+}
+.ContactUs_Text {
+    margin-top: 10px;
+    margin-bottom:50px;
+    max-width: 900px;
+    font-weight: 400;
+    font-size: 18px;
+}
+.input-name, .input-email {
+    width:425px;
+    height: 70px;
+    padding: 10px;
+    border: none;
+    background-color: #FFF9F1;
+    border-radius: 5px;
+    width: calc(50% - 5px);
+    color: black;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+    .input-name{
+        margin-right: 30px;
+    }
+.textarea-message {
+    color: black;
+    width: 900px;
+    height: 150px;
+    border: none;
+    background-color: #FFF9F1;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    resize: none;
+}
+
+.submit-button {
+    padding: 10px 20px;
+    background-color: #A0522D;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+    .submit-button:hover {
+        background-color: #8B4513; 
+    }

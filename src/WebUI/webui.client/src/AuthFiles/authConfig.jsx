@@ -6,7 +6,7 @@ const config = {
     client_secret: 'OnlyUserKnowsThisSecret',
     redirect_uri: 'https://localhost:5173/signin-oidc',
     response_type: 'code',
-    scope: 'openid profile Users.WebApi.Scope',
+    scope: 'openid profile Users.WebApi.Scope ContactUs.WebApi.Scope',
     post_logout_redirect_uri: 'https://localhost:5173/signout-callback-oidc',
 };
 

@@ -18,8 +18,9 @@ function App() {
             <MainPageOurProducts />
 
             <CoffeeMenu />
-            <MainPageBookTable />
-
+            <div className="book-table">
+                <MainPageBookTable />
+            </div>
 
         </div>
     );

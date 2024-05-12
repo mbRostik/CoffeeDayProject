@@ -10,7 +10,9 @@ import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import NavBar from './Components/NavBar/NavBar';
 import Profile from './Components/Profile/Profile';
+import ContactUs from './Components/ContactUs/ContactUs';
 
+import MainPageBookTable from './Components/MainPage/MainPageBookTable/MainPageBookTable.jsx';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -24,9 +26,12 @@ function AppContainer() {
                 <div className="Centre_Div">
                     <div className="Centre">
                         <Routes>
+                            
+                            <Route path="/order-table" element={<MainPageBookTable />} />
                             <Route path="/signin-oidc" element={<SignIn_CallbackPage />} />
                             <Route path="/signout-callback-oidc" element={<SignOut_CallBackPage />} />
                             <Route path="/profile" element={<Profile />} />
+                            <Route path="/contact-us" element={<ContactUs />} />
 
                             <Route path="/" element={<App />} />
                         </Routes>

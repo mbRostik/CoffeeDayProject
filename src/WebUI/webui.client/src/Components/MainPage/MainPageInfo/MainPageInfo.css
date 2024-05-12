@@ -45,14 +45,14 @@
 
 .MainPageInfo_LoginButton {
     padding: 18px 25px;
-    background-color: white;
+    background-color: #FFF9F1;
     color: #734022;
-    border-radius: 10px;
+    border-radius: 15px;
     border: none;
     outline: none;
     box-shadow: none;
     cursor: pointer;
-    border: 1px solid #734022;
+    border: 2px solid #734022;
     font-size: 18px;
     font-weight: 700;
     margin-left: 30px;

@@ -35,8 +35,8 @@ const NavBar = () => {
                     </NavLink>
 
                         <NavLink to="/order-table" className="nav-item">
-                        <div>Order Table</div>
-                     </NavLink>
+                            <div>Order Table</div>
+                        </NavLink>
 
                         <NavLink to="/" className="nav-item">
                             <div>

@@ -52,6 +52,24 @@
         "DurationOfBreak": 10000,
         "TimeoutValue": 2000
       }
+    },
+
+    {
+      "UpstreamPathTemplate": "/ocelot/contactUs",
+      "UpstreamHttpMethod": [ "Post" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5244
+        }
+      ],
+      "DownstreamPathTemplate": "/ContactUs/SendUsMessage",
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 5,
+        "DurationOfBreak": 10000,
+        "TimeoutValue": 2000
+      }
     }
   ],
 

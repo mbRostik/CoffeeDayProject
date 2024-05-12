@@ -14,7 +14,8 @@ namespace IdentityServer.WebApi
         public static IEnumerable<ApiScope> ApiScopes =>
            new ApiScope[]
            {
-               new ApiScope("Users.WebApi.Scope")
+               new ApiScope("Users.WebApi.Scope"),
+               new ApiScope("ContactUs.WebApi.Scope")
 
            };
 
@@ -23,6 +24,11 @@ namespace IdentityServer.WebApi
              {
                  Scopes=new List<string>{ "Users.WebApi.Scope"},
                  ApiSecrets=new List<Secret>{new Secret("Users.WebApi.Secret".Sha256())},
+             },
+            new ApiResource("ContactUs.WebApi")
+             {
+                 Scopes=new List<string>{ "ContactUs.WebApi.Scope"},
+                 ApiSecrets=new List<Secret>{new Secret("ContactUs.WebApi.Secret".Sha256())},
              }
         };
 
@@ -39,7 +45,7 @@ namespace IdentityServer.WebApi
                     PostLogoutRedirectUris={ "https://localhost:5173/signout-callback-oidc" },
                     AllowOfflineAccess = true,
                     AllowedScopes = 
-                    {"openid", "profile", "Users.WebApi.Scope"},
+                    {"openid", "profile", "Users.WebApi.Scope", "ContactUs.WebApi.Scope"},
                     RequireConsent = true,
                     RequirePkce=true,
                     AllowPlainTextPkce=true,
