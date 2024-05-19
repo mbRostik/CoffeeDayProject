@@ -55,7 +55,7 @@ const NavBar = () => {
 
                         <NavLink to="/bag" className="nav-item">
                             <div>
-                                <img className="nav-bag" src="sdvf.png" alt="Bag" />
+                                <img className="nav-bag" src="Vector (3).png" alt="Bag" />
                             </div>
                         </NavLink>
 
@@ -100,7 +100,7 @@ const NavBar = () => {
 
                             <NavLink to="/bag" className="nav-item">
                                 <div>
-                                    <img className="nav-bag" src="sdvf.png" alt="Bag" />
+                                    <img className="nav-bag" src="Vector (3).png" alt="Bag" />
                                 </div>
                             </NavLink>
                             

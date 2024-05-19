@@ -11,7 +11,9 @@ import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-route
 import NavBar from './Components/NavBar/NavBar';
 import Profile from './Components/Profile/Profile';
 import ContactUs from './Components/ContactUs/ContactUs';
-
+import Menu from './Components/Menu/Menu';
+import Bag from './Components/Bag/Bag';
+import { BagProvider } from './Components/Bag/BagContext';
 import MainPageBookTable from './Components/MainPage/MainPageBookTable/MainPageBookTable.jsx';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -32,7 +34,8 @@ function AppContainer() {
                             <Route path="/signout-callback-oidc" element={<SignOut_CallBackPage />} />
                             <Route path="/profile" element={<Profile />} />
                             <Route path="/contact-us" element={<ContactUs />} />
-
+                            <Route path="/menu" element={<Menu />} />
+                            <Route path="/bag" element={<Bag/>} />
                             <Route path="/" element={<App />} />
                         </Routes>
                     </div>
@@ -45,9 +48,11 @@ function AppContainer() {
 root.render(
     <React.StrictMode>
         <AuthProvider>
+            <BagProvider>
             <Router>
                 <AppContainer />
-            </Router>
+                </Router>
+            </BagProvider>
         </AuthProvider>
     </React.StrictMode>
 );

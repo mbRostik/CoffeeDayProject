@@ -55,7 +55,8 @@
     object-fit: cover;
 }
 .NavBarButton_Login {
-    padding: 11px 26px;
+    padding: 14px 22px;
+    font-weight: 700;
     background-color: white;
     color: #734022;
     border-radius: 100px;

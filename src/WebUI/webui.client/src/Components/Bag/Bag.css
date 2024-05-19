@@ -1,0 +1,202 @@
+.BagDiv
+{
+    color: black;
+    height:100%;
+}
+
+.BagItems {
+    width: 100%;
+    background-color: #F5F0EA;
+    padding: 20px 0px;
+    display: flex;
+    border-radius: 15px;
+    flex-direction: column;
+}
+.Bag_Product_Information_Photo {
+    width: 75px;
+    height: 75px;
+    object-fit: cover;
+}
+.Bag_Product_Information {
+    display: flex;
+    align-content:center;
+    align-items:center;
+
+}
+.Bag_Empty_Div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+}
+.Bag_Empty_Div_Title {
+    color: #221004;
+    font-size:32px;
+    font-weight:700;
+}
+.Bag_Product_Information_Up {
+    display: flex;
+    align-content: center;
+    align-items: center;
+}
+
+
+.Bag_Product_Information_Total {
+    margin-left: 20px;
+    display: flex;
+    justify-content: space-between;
+    height: 75px;
+    flex-direction: column;
+    width: 250px;
+}
+
+
+
+.Bag_Product_Information_Up_Name {
+    color: #221004;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.Bag_Product_Information_Up_Description {
+    margin-left: 10px;
+    color: #B4ABA0;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.Bag_Product_Information_Down_Price {
+    color: #221004;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.Bag-Product_Item {
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #CDC4B9;
+    padding-bottom: 20px;
+    margin-left: 25px;
+    margin-right: 25px;
+}
+
+.Bag_Product_Information_Down {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    color: #221004;
+    font-size: 12px;
+    font-weight: 400;
+}
+.BagItems_Title {
+    margin-bottom: 65px;
+    margin-left: 25px;
+    padding-bottom:20px;
+    margin-right: 25px;
+    color: #221004;
+    font-size: 20px;
+    font-weight: 700;
+    border-bottom: 1px solid #CDC4B9;
+}
+.Bag_Product_Information_Down_Control {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    color: #221004;
+    font-size: 12px;
+    font-weight: 400;
+    margin-left: 25px;
+}
+
+.Bag_Product_Information_Down_Count {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.Bag_Product_Right {
+    margin-right: 25px;
+    align-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+.Bag_Product_Right_Delete {
+    cursor: pointer;
+    margin-top: 23px;
+    width: 17px;
+    height: 17px;
+    object-fit: cover;
+}
+.Bag_Product_Information_Down_Plus {
+    cursor: pointer;
+}
+.Bag_Product_Information_Down_Minus {
+    cursor: pointer;
+}
+
+.Bag_Down_Total {
+    display: flex;
+    justify-content: center;
+    align-content:center;
+    align-items:center;
+
+
+}
+.Bag_Down_Total_Left{
+    margin-right:95px;
+    align-content:center;
+    align-items:center;
+    display:flex;
+    flex-direction:column;
+
+}
+
+.Bag_Down_Total_Right {
+    margin-left: 95px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.Bag_Down_Total_Up {
+    color: #221004;
+    font-size:18px;
+    font-weight:400;
+}
+.Bag_Down_Total_Down {
+    margin-top:5px;
+    color: #A6754B;
+    font-size:25px;
+    font-weight:700;
+}
+
+.bag-nutton-order {
+    margin-top: 30px;
+    color: white;
+    background-color: #734022;
+    width: 360px;
+    height: 60px;
+    text-align: center;
+    align-content: center;
+    font-weight: 700;
+    font-size: 18px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.Bag_Down_All {
+    align-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.Bag_Empty {
+    width: 277px;
+    height: 311px;
+    object-fit: cover;
+
+}
