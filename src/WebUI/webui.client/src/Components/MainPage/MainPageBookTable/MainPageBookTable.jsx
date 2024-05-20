@@ -7,10 +7,6 @@ function MainPageBookTable() {
             <div className="MainPageBookTable_Title">
                 Book Your Table
             </div>
-
-            <div className="MainPageBookTable_Text">
-                Secure your spot for an unforgettable dining experience.
-            </div>
             <div className="MainPageBookTable_Text">
                 Reserve your table now and prepare to indulge in culinary delights.
             </div>

@@ -1,0 +1,157 @@
+.OrderMain{
+    margin-top:60px;
+    width:100%;
+}
+.OrderDiv{
+    width:100%;
+}
+
+.OrderItems{
+    width:100%;
+}
+
+.OrderItemsTitle{
+    font-size: 20px;
+    font-weight: 700;
+    color:black;
+}
+.OrderItems_Main{
+    width:100%;
+}
+.OrderItem {
+    display: flex;
+    flex-direction: column;
+}
+.OrderItems {
+    margin-top: 80px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.OrderItem {
+    align-content: center;
+    align-items: center;
+    max-width: 230px;
+    max-height: 270px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 230px;
+    height: 270px;
+    background-color: #FFF9F1;
+    box-shadow: 4px 4px 20px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 25px;
+    transition: box-shadow 0.2s ease;
+    cursor: pointer;
+}
+
+    .OrderItem:hover {
+        box-shadow: 8px 8px 40px 0 rgba(0, 0, 0, 0.2); 
+    }
+
+
+
+.OrderImage {
+    margin-top:-40px;
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+}
+
+.Order_Id {
+    margin-top: 50px;
+    color: #221004;
+    font-size:18px;
+    font-weight: 700;
+}
+
+.Order_DownInformation {
+    align-items:center;
+    width:100%;
+    color: #221004;
+    display: flex;
+    justify-content:space-between;
+    margin-bottom:20px;
+}
+
+.Order_DownInformation_Date{
+    margin-left:30px;
+    font-weight:400;
+    font-size: 16px;
+}
+.Order_DownInformation_Price {
+    font-weight: 700;
+    font-size: 20px;
+    margin-right: 30px;
+}
+
+
+.OrderDetails_Main_Picture {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+}
+
+.OrderDetails_Main_Items {
+
+    width: 100%;
+    min-height: 200px;
+    box-shadow: 4px 4px 20px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 25px;
+}
+
+.OrderDetails_Main_Item {
+    align-content: center;
+    align-items:center;
+
+    display: flex;
+    justify-content:space-between;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 50px;
+}
+.OrderDetails_Main_Title {
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 50px;
+    font-size: 25px;
+    font-weight:700;
+    color:black;
+}
+.OrderDetails_Main_Item_LeftSide {
+    display: flex;
+}
+
+.OrderDetails_Main_Item_Information{
+    margin-left:30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.OrderDetails_Main_Item_Information_Name {
+    font-size: 18px;
+    font-weight: 700;
+    color: #221004;
+}
+.OrderDetails_Main_Item_Information_Count {
+    font-size: 16px;
+    font-weight: 400;
+    color: #221004;
+}
+
+.OrderDetails_Main_Item_Information_Description {
+
+    font-size: 18px;
+    font-weight: 400;
+    color: #221004;
+    margin-left:100px;
+}
+
+.OrderDetails_Main_Item_Information_TotalPrice {
+    font-size: 24px;
+    font-weight: 700;
+    color: #221004;
+}

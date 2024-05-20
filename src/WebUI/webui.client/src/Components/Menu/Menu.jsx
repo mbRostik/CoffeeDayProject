@@ -57,7 +57,15 @@ const Menu = () => {
             console.log('There is no friend');
         }
     }
-
+    const arrayBufferToBase64 = (buffer) => {
+        let binary = '';
+        const bytes = new Uint8Array(buffer);
+        const len = bytes.byteLength;
+        for (let i = 0; i < len; i++) {
+            binary += String.fromCharCode(bytes[i]);
+        }
+        return window.btoa(binary);
+    };
     async function fetchCategories() {
         try {
             const response = await fetch(`${config.apiBaseUrl}/GetAllCategories`, {
@@ -219,8 +227,11 @@ const Menu = () => {
                                 <div className="MenuLeftSide_Down_Categories_Inside">
                                     {categories.map(category => (
                                         <div key={category.id} className="category-item" onClick={() => chooseCategory(category.id)}>
-                                            <img src={category.photo ? `data:image/jpeg;base64,${userData.photo}` : "/water-bottle.png"} alt="Picture" className="category-picture" />
-
+                                            <img
+                                                src={category.photo ? `data:image/jpeg;base64,${category.photo}` : "/water-bottle.png"}
+                                                alt="Picture"
+                                                className="category-picture"
+                                            />
                                             <p>{category.name}</p>
                                         </div>
                                     ))}
@@ -244,7 +255,7 @@ const Menu = () => {
                                         {products.map(product => (
                                             <div key={product.id} className="product-item">
                                                 <div className="product-item-first">
-                                                    <img src={product.photo ? `data:image/jpeg;base64,${userData.photo}` : "/gfd.png"} alt="Picture" className="product-item-picture" />
+                                                    <img src={product.photo ? `data:image/jpeg;base64` : "/gfd.png"} alt="Picture" className="product-item-picture" />
 
 
                                                     <div className="product-item-middletext">
@@ -265,7 +276,7 @@ const Menu = () => {
                                                 {isAuthorized === true ?
 
                                                     <div className="product-item-button" onClick={() => AddTheProduct(product.id)}>
-                                                        Order-{'>'}
+                                                        Order {'>'}
                                                     </div>
                                                     :
                                                     <div></div>

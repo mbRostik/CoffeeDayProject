@@ -60,7 +60,8 @@ namespace Users.Application.UseCases.Handlers.OperationHandlers
 
                 var order = new OrderHistory
                 {
-                    UserId = request.model.UserId
+                    UserId = request.model.UserId,
+                    Date = DateTime.UtcNow,
                 };
 
                 var newOrder = await dbContext.OrderHistories.AddAsync(order);

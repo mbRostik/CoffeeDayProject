@@ -36,6 +36,47 @@
       }
     },
 
+
+    {
+      "UpstreamPathTemplate": "/ocelot/GetUserOrders",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5235
+        }
+      ],
+      "DownstreamPathTemplate": "/User/GetUserOrders",
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 5,
+        "DurationOfBreak": 10000,
+        "TimeoutValue": 2000
+      }
+    },
+
+
+
+
+    {
+      "UpstreamPathTemplate": "/ocelot/GetUserOrderDetails",
+      "UpstreamHttpMethod": [ "Post" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5235
+        }
+      ],
+      "DownstreamPathTemplate": "/User/GetUserOrderDetails",
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 5,
+        "DurationOfBreak": 10000,
+        "TimeoutValue": 2000
+      }
+    },
+
+
     {
       "UpstreamPathTemplate": "/ocelot/userProfilePhotoUpload",
       "UpstreamHttpMethod": [ "Post" ],

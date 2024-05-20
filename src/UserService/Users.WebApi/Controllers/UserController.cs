@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Security.Claims;
 using Users.Application.Contracts.ChangeDTOs;
+using Users.Application.Contracts.GetDTOs;
 using Users.Application.Contracts.SendDTOs;
 using Users.Application.UseCases.Commands;
 using Users.Application.UseCases.Queries;
@@ -26,8 +27,6 @@ namespace Users.WebApi.Controllers
         {
 
             var userId = HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
-            Console.WriteLine("85b0ac2c-c88e-4516-bbb6-ec64af31e4ad");
-            Console.WriteLine(userId);
             if (string.IsNullOrEmpty(userId))
             {
                 return NotFound("User ID not found.");
@@ -71,6 +70,70 @@ namespace Users.WebApi.Controllers
             }
 
         }
+
+
+        [HttpGet("GetUserOrders")]
+        public async Task<ActionResult<List<GetUserOrdersDTO>>> GetUserOrders()
+        {
+
+            try
+            {
+                var userId = HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+
+                if (string.IsNullOrWhiteSpace(userId))
+                {
+                    Console.WriteLine("ChangeUserSettings was called but no user ID was found in the claims.");
+                    return Unauthorized("User ID not found.");
+                }
+
+                Console.WriteLine("Starting ChangeUserSettings for user.");
+
+                
+                var result = await mediator.Send(new GetUserOrdersQuery(userId));
+
+                Console.WriteLine("Successfully changed settings for user.");
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex + "Error changing settings for user.");
+                return StatusCode(500, "An error occurred while changing user settings.");
+            }
+
+        }
+
+
+        [HttpPost("GetUserOrderDetails")]
+        public async Task<ActionResult<List<GetUserOrderDetailsDTO>>> GetUserOrderDetails([FromBody] GetUserOrderDetailsByIdDTO model )
+        {
+
+            try
+            {
+                var userId = HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+
+                if (string.IsNullOrWhiteSpace(userId))
+                {
+                    Console.WriteLine("ChangeUserSettings was called but no user ID was found in the claims.");
+                    return Unauthorized("User ID not found.");
+                }
+
+                Console.WriteLine("Starting ChangeUserSettings for user.");
+
+
+                var result = await mediator.Send(new GetUserOrderDetailsQuery(model.Id));
+
+                Console.WriteLine("Successfully changed settings for user.");
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex + "Error changing settings for user.");
+                return StatusCode(500, "An error occurred while changing user settings.");
+            }
+
+        }
+
+
 
         [HttpPost("UploadProfilePhoto")]
         public async Task<ActionResult<GetUserProfileDTO>> UploadProfilePhoto([FromBody] ChangeProfilePhotoDTO model)

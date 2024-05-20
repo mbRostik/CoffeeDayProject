@@ -221,7 +221,7 @@ const Bag = () => {
                                                 </div>
                                             </div>
                                             <div className="bag-nutton-order" onClick={() => PayOrder()}>
-                                                Order-{'>'}
+                                                Order {'>'}
                                             </div>
                                         </div>
                                     </div>

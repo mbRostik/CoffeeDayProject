@@ -27,8 +27,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiGateWay", "ApiGateWay", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OcelotGateWay", "src\ApiGateWay\OcelotGateWay\OcelotGateWay.csproj", "{494E33DF-DAFC-4496-94C5-98B9E5C35677}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Aggregator", "Aggregator", "{56B96E25-7084-4232-8C68-3ED59729C784}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ContactUs", "ContactUs", "{FAC6F36F-EFDA-4733-9CD4-89EDAEA521D4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactUs.WebApi", "src\ContactUs\ContactUs.WebApi\ContactUs.WebApi.csproj", "{C1A0530A-60BA-4796-AE98-3A5D7C1B1C2F}"
@@ -41,13 +39,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactUs.Infrastructure.Da
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Menu", "Menu", "{9925F708-0053-4603-88FD-F1B9C1F4362A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Menu.Application", "src\MenuService\Menu.Application\Menu.Application.csproj", "{5CBB8857-47AD-4D96-B545-F4BCC0B26C33}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Menu.Application", "src\MenuService\Menu.Application\Menu.Application.csproj", "{5CBB8857-47AD-4D96-B545-F4BCC0B26C33}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Menu.Domain", "src\MenuService\Menu.Domain\Menu.Domain.csproj", "{A6B3B304-9430-4035-9009-2B84B372E327}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Menu.Domain", "src\MenuService\Menu.Domain\Menu.Domain.csproj", "{A6B3B304-9430-4035-9009-2B84B372E327}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Menu.Infrastructure.Data", "src\MenuService\Menu.Infrastructure.Data\Menu.Infrastructure.Data.csproj", "{5CCBC811-393C-42E1-814B-2935CBEEC49A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Menu.Infrastructure.Data", "src\MenuService\Menu.Infrastructure.Data\Menu.Infrastructure.Data.csproj", "{5CCBC811-393C-42E1-814B-2935CBEEC49A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Menu.WebApi", "src\MenuService\Menu.WebApi\Menu.WebApi.csproj", "{07A7ACCF-4991-4BA3-863C-BA4C7732E0E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Menu.WebApi", "src\MenuService\Menu.WebApi\Menu.WebApi.csproj", "{07A7ACCF-4991-4BA3-863C-BA4C7732E0E9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -137,7 +135,6 @@ Global
 		{28838D5B-6FEC-4D15-930F-2241E07D8CD4} = {262B203C-0DFF-4A54-B588-D22F04F1F9D7}
 		{CAD69306-E4F3-45A7-930D-199559517DB5} = {262B203C-0DFF-4A54-B588-D22F04F1F9D7}
 		{494E33DF-DAFC-4496-94C5-98B9E5C35677} = {F530DC58-FA24-401B-8794-9D1E3B10AC27}
-		{56B96E25-7084-4232-8C68-3ED59729C784} = {F530DC58-FA24-401B-8794-9D1E3B10AC27}
 		{C1A0530A-60BA-4796-AE98-3A5D7C1B1C2F} = {FAC6F36F-EFDA-4733-9CD4-89EDAEA521D4}
 		{F41CCBEF-1740-4DA2-8E06-264C445FEC9A} = {FAC6F36F-EFDA-4733-9CD4-89EDAEA521D4}
 		{923BE852-F8A9-4B7C-86F9-C342FDE6CE18} = {FAC6F36F-EFDA-4733-9CD4-89EDAEA521D4}

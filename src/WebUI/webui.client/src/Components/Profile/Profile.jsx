@@ -8,6 +8,7 @@ import { useAuth } from './../AuthProvider';
 import config from '../../config.json';
 import { ToastContainer, toast } from 'react-toastify';
 import './Profile.css'
+import OrderHistory from './OrderHistory/OrderHistory.jsx'
 
 const Profile = () => {
     const [isHovered, setIsHovered] = useState(false);
@@ -19,13 +20,15 @@ const Profile = () => {
 
 
     useEffect(() => {
-        try {
-            setName(userData.name);
-            setPreferences(userData.preferences);
-            setDateOfBirth(new Date(userData.dateOfBirth).toISOString().slice(0, 10));
-        }
-        catch {
-            console.log("Excheption while setting user info");
+        if (isAuthorized) {
+            try {
+                setName(userData.name);
+                setPreferences(userData.preferences);
+                setDateOfBirth(new Date(userData.dateOfBirth).toISOString().slice(0, 10));
+            }
+            catch {
+                console.log("Excheption while setting user info");
+            }
         }
 
     }, [isAuthorized]);
@@ -230,22 +233,60 @@ const Profile = () => {
                                     </div>
                                 </div>
                     </div>
-
-                            <div className="Right_ProfileDiv">
-                                <h3>
-                                    <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
-                                </h3>
-                                <div className="ProfileBio">
-                                    <input type="text" value={preferences} onChange={(e) => setPreferences(e.target.value)} />
+                    <div className="Right_ProfileDiv">
+                                <div className="Right_ProfileDiv_Title">
+                                    <input
+                                        type="text"
+                                        value={name}
+                                        onChange={(e) => setName(e.target.value)}
+                                        className="input-title"
+                                    />
                                 </div>
-                                <p>
-                                    Birth: <input type="date" value={dateOfBirth} onChange={(e) => setDateOfBirth(e.target.value)} />
-                                </p>
-                                <button onClick={handleSave}>Save Changes</button>
-                            </div>
+                                <div className="ProfileBio">
+                                    <div className="ProfileBio_Birth">
+                                        <div className="ProfileBio_Birth_Left">Birth:</div>
+                                        <div>
+                                            <input
+                                                type="date"
+                                                value={dateOfBirth}
+                                                onChange={(e) => setDateOfBirth(e.target.value)}
+                                                className="input-date"
+                                            />
+                                        </div>
+                                    </div>
+                                    
+                                        
+                                    <div className="ProfileBio_Description">
+                                        <div className="ProfileBio_Description_Left">Description:</div>
+                                        <div>
+                                            <textarea
+                                                value={preferences}
+                                                onChange={(e) => setPreferences(e.target.value)}
+                                                className="input-description"
+                                            />
+                                        </div>
+                                    </div>
 
-                </div>
+                                   
+                                </div>
+                                <div onClick={handleSave} className="Brown_Profile_Button">Save Changes</div>
+                            </div>
+                            
+
+                        </div>
+
+
             )}
+            <div>
+                {isAuthorized === false ? (
+                    <div>UnAuthorized</div>
+                ) : (
+                    <div>
+                        <OrderHistory />
+                    </div>
+                )}
+            </div>
+            
         </div>
     );
 };

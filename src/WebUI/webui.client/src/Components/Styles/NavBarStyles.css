@@ -52,7 +52,11 @@
 
 .nav-profile {
     max-height: 50px;
+    max-width:50px;
+    height:50px;
+    width:50px;
     object-fit: cover;
+    border-radius:50%;
 }
 .NavBarButton_Login {
     padding: 14px 22px;

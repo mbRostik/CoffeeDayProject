@@ -7,7 +7,7 @@
 
 .MainPageBookTable_Text {
     font-size: 25px;
-    font-weight: 700;
+    font-weight: 400;
     margin-bottom: 40px;
     color: #221004;
 }
@@ -19,18 +19,21 @@
 
 
 .input-group {
+    color: black;
     margin-bottom: 15px;
 }
 .input-field-message {
     background-color: #F5F0EA;
     width: 860px;
-    height:170px;
+    height: 170px;
     padding: 10px;
     border: 2px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
+    color: black;
 }
 .input-field {
+
     color:black;
     background-color: #F5F0EA;
     width: 405px;

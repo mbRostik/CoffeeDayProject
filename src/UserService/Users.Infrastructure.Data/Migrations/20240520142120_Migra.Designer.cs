@@ -13,7 +13,7 @@ using Users.Infrastructure.Data;
 namespace Users.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(UserDbContext))]
-    [Migration("20240520095447_Migra")]
+    [Migration("20240520142120_Migra")]
     partial class Migra
     {
         /// <inheritdoc />
@@ -34,6 +34,9 @@ namespace Users.Infrastructure.Data.Migrations
                         .HasAnnotation("DatabaseGenerated", DatabaseGeneratedOption.Identity);
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("UserId")
                         .IsRequired()

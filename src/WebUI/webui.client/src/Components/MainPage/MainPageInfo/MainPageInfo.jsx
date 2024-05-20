@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import './MainPageInfo.css';
 import { useAuth } from '../../AuthProvider';
+import { NavLink } from 'react-router-dom';
 
 function MainPageInfo() {
     const { user, userData, loading, isAuthorized } = useAuth();
@@ -23,8 +24,9 @@ function MainPageInfo() {
                         </div>
 
                     <div className="MainPageInfo_FC_Buttons">
-                        <div className="Brown_Small_Button">Explore our products -{'>'} </div>
-
+                        <NavLink to="/menu" className="Brown_Small_Button">
+                            <div>Explore our products {'>'}</div>
+                        </NavLink>
                         
                         {!isAuthorized && (
                             <div className="MainPageInfo_LoginButton">Log In / Sign Up</div>
