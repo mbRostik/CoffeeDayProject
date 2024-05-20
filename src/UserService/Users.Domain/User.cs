@@ -23,5 +23,7 @@ namespace Users.Domain
         public int SexId { get; set; }
 
         public bool IsBanned { get; set; } = false;
+
+        public List<OrderHistory> OrderHistory { get; set; }
     }
 }

@@ -31,6 +31,7 @@ builder.Services.AddMediatR(options =>
 builder.Services.AddMassTransit(x =>
 {
     x.AddConsumer<UserCreation_Consumer>();
+    x.AddConsumer<OrderPayedConsumer>();
 
     x.UsingRabbitMq((context, cfg) =>
     {
@@ -42,6 +43,11 @@ builder.Services.AddMassTransit(x =>
         cfg.ReceiveEndpoint("User_UserConsumer_queue", e =>
         {
             e.ConfigureConsumer<UserCreation_Consumer>(context);
+        });
+
+        cfg.ReceiveEndpoint("User_OrderPayedConsumer_queue", e =>
+        {
+            e.ConfigureConsumer<OrderPayedConsumer>(context);
         });
     });
 });

@@ -8,7 +8,8 @@ namespace MessageBus.Messages.Menu
 {
     public class OrderPayedEvent : IntegrationBaseEvent
     {
-       public List<Order_Product> Order_Products { get; set; }
+       public string UserId { get; set; }
+       public List<Order_Product> Order_Products { get; set; } = new List<Order_Product>();
     }
 
     public class Order_Product

@@ -43,6 +43,7 @@ namespace Users.Application.UseCases.Handlers.QueryHandlers
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex);
                 return null;
             }
 

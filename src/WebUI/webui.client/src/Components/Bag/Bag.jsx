@@ -47,6 +47,27 @@ const Bag = () => {
         }
     }, [isAuthorized]);
 
+    const PayOrder = async () => {
+        try {
+           
+            const accessToken = await userManager.getUser().then(user => user.access_token);
+            const response = await fetch(`${config.apiBaseUrl}/PayOrder`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${accessToken}`,
+                    'Content-Type': 'application/json'
+                }
+            });
+            const responseData = await response.json();
+            if (responseData === true) {
+                await fetchBagProducts();
+            }
+        } catch (error) {
+            console.log('There is no friend');
+        }
+    };
+
+
     const AddTheProduct = async (id) => {
         try {
             const ProductId = id;
@@ -199,7 +220,7 @@ const Bag = () => {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="bag-nutton-order" onClick={() => AddTheProduct(product.id)}>
+                                            <div className="bag-nutton-order" onClick={() => PayOrder()}>
                                                 Order-{'>'}
                                             </div>
                                         </div>

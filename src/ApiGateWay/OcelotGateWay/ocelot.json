@@ -196,6 +196,24 @@
         "DurationOfBreak": 10000,
         "TimeoutValue": 2000
       }
+    },
+
+    {
+      "UpstreamPathTemplate": "/ocelot/PayOrder",
+      "UpstreamHttpMethod": [ "Post" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5170
+        }
+      ],
+      "DownstreamPathTemplate": "/Menu/PayOrder",
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 5,
+        "DurationOfBreak": 10000,
+        "TimeoutValue": 2000
+      }
     }
   ],
 

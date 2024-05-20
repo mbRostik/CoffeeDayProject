@@ -33,7 +33,9 @@ namespace Menu.Application.UseCases.Handlers.OperationHandlers
                 var isTheProductInTheBag =await dbContext.Bags.Where(x => x.UserId == request.userId).ToListAsync();
 
                 OrderPayedEvent orderPayedEvent = new OrderPayedEvent();
-                foreach(var item in isTheProductInTheBag)
+
+                orderPayedEvent.UserId = request.userId;
+                foreach (var item in isTheProductInTheBag)
                 {
                     var product = await dbContext.Products.FirstOrDefaultAsync(x=>x.Id == item.ProductId);
                     Order_Product temp = new Order_Product
@@ -50,6 +52,7 @@ namespace Menu.Application.UseCases.Handlers.OperationHandlers
                 dbContext.Bags.RemoveRange(isTheProductInTheBag);
                 await dbContext.SaveChangesAsync();
                 await _publisher.Publish(orderPayedEvent);
+
 
                 return true;
             }

@@ -26,6 +26,8 @@ namespace Users.WebApi.Controllers
         {
 
             var userId = HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+            Console.WriteLine("85b0ac2c-c88e-4516-bbb6-ec64af31e4ad");
+            Console.WriteLine(userId);
             if (string.IsNullOrEmpty(userId))
             {
                 return NotFound("User ID not found.");

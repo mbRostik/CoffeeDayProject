@@ -14,6 +14,16 @@ namespace Users.Infrastructure.Data
 
         public DbSet<User> Users { get; set; }
 
+        public DbSet<OrderHistory> OrderHistories { get; set; }
 
+        public DbSet<Product> Products { get; set; }
+
+        public DbSet<Order_Products> OrderProducts { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(UserDbContext).Assembly);
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
