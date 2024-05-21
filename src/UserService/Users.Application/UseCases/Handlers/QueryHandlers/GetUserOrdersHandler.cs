@@ -26,9 +26,13 @@ namespace Users.Application.UseCases.Handlers.QueryHandlers
         {
             try
             {
+                Console.WriteLine($"Start handling GetUserOrdersQuery for UserId: {request.id}");
+
                 var orders = await dbContext.OrderHistories
-                .Where(x => x.UserId == request.id)
-                .ToListAsync();
+                    .Where(x => x.UserId == request.id)
+                    .ToListAsync();
+
+                Console.WriteLine($"Fetched {orders.Count} orders for UserId: {request.id}");
 
                 var orderIds = orders.Select(o => o.Id).ToList();
 
@@ -36,11 +40,15 @@ namespace Users.Application.UseCases.Handlers.QueryHandlers
                     .Where(op => orderIds.Contains(op.OrderId))
                     .ToListAsync();
 
+                Console.WriteLine($"Fetched {orderProducts.Count} order products for orders of UserId: {request.id}");
+
                 var productIds = orderProducts.Select(op => op.ProductId).ToList();
 
                 var products = await dbContext.Products
                     .Where(p => productIds.Contains(p.Id))
                     .ToDictionaryAsync(p => p.Id, p => p.ProductPrice);
+
+                Console.WriteLine($"Fetched {products.Count} products associated with orders of UserId: {request.id}");
 
                 var result = orders.Select(order =>
                 {
@@ -51,22 +59,25 @@ namespace Users.Application.UseCases.Handlers.QueryHandlers
                     var summ = productsForOrder
                         .Sum(op => op.Count * products[op.ProductId]);
 
+                    Console.WriteLine($"Processed order: {order.Id}, Total: {summ}");
+
                     return new GetUserOrdersDTO
                     {
                         Id = order.Id,
-                        Date = DateTime.Now,
+                        Date = order.Date, // Ensure correct date
                         Summ = summ
                     };
                 }).ToList();
+
+                Console.WriteLine($"Returning {result.Count} orders for UserId: {request.id}");
 
                 return result;
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
+                Console.WriteLine($"Exception occurred while handling GetUserOrdersQuery for UserId: {request.id} - {ex}");
                 return null;
             }
-
         }
     }
 }

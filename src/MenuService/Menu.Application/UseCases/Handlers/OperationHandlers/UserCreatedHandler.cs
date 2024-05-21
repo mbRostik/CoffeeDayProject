@@ -26,19 +26,19 @@ namespace Users.Application.UseCases.Handlers.OperationHandlers
         {
             try
             {
-                Console.WriteLine("Creating new user with details");
+                Console.WriteLine("Creating new user with details: ");
 
                 var model = await dbContext.Users.AddAsync(request.model, cancellationToken);
                 await dbContext.SaveChangesAsync(cancellationToken);
 
-                Console.WriteLine("Successfully created user with ID");
+                Console.WriteLine($"Successfully created user with ID: {model.Entity.Id}");
 
                 return model.Entity;
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error occurred while creating user");
-                throw; 
+                Console.WriteLine($"Error occurred while creating user: {ex}");
+                throw;
             }
         }
     }

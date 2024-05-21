@@ -26,11 +26,15 @@ namespace Menu.Application.UseCases.Handlers.OperationHandlers
         {
             try
             {
+                Console.WriteLine($"Start handling AddProductToTheBagCommand for UserId: {request.userId}, ProductId: {request.model.ProductId}");
 
-                var isTheProductInTheBag = await dbContext.Bags.FirstOrDefaultAsync(x => x.UserId == request.userId && x.ProductId == request.model.ProductId);
+                var isTheProductInTheBag = await dbContext.Bags.FirstOrDefaultAsync(
+                    x => x.UserId == request.userId && x.ProductId == request.model.ProductId);
 
-                if(isTheProductInTheBag==null || isTheProductInTheBag.Count == 0)
+                if (isTheProductInTheBag == null || isTheProductInTheBag.Count == 0)
                 {
+                    Console.WriteLine("Product not in the bag or count is zero. Adding new product to the bag.");
+
                     Bag bag = new Bag
                     {
                         UserId = request.userId,
@@ -40,19 +44,24 @@ namespace Menu.Application.UseCases.Handlers.OperationHandlers
 
                     await dbContext.AddAsync(bag);
                     await dbContext.SaveChangesAsync();
-                    return true;
 
+                    Console.WriteLine("Product added to the bag and changes saved.");
+                    return true;
                 }
                 else
                 {
+                    Console.WriteLine("Product already in the bag. Incrementing the count.");
+
                     isTheProductInTheBag.Count += 1;
                     await dbContext.SaveChangesAsync();
+
+                    Console.WriteLine("Product count incremented and changes saved.");
                     return true;
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error occurred while creating user");
+                Console.WriteLine($"Error occurred while adding product to the bag for UserId: {request.userId}, ProductId: {request.model.ProductId} - {ex}");
                 return false;
             }
         }

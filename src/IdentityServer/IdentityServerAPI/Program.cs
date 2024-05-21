@@ -22,7 +22,14 @@ var assembly = typeof(Program).Assembly.GetName().Name;
 var assembly2 = typeof(IdentityServerDbContext).Assembly.GetName().Name;
 
 var defaultConnString = builder.Configuration.GetConnectionString("MSSQLConnection");
-
+builder.WebHost.ConfigureKestrel((context, options) =>
+{
+    options.Listen(IPAddress.Any, 8080);
+    options.Listen(IPAddress.Any, 8081, listenOptions =>
+    {
+        listenOptions.UseHttps("https/identityserverapi-api.pfx", "pa55w0rd!");
+    });
+});
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
@@ -105,7 +112,7 @@ builder.Services.AddMassTransit(x =>
 {
     x.UsingRabbitMq((cxt, cfg) =>
     {
-        cfg.Host("localhost", "/", h =>
+        cfg.Host("rabbitmq", "/", h =>
         {
             h.Username("guest");
             h.Password("guest");
@@ -126,24 +133,24 @@ if (app.Environment.IsDevelopment())
 }
 
 
-//using (var scope = app.Services.CreateScope())
-//{
-//    try
-//    {
-//        var identityServerDb = scope.ServiceProvider.GetRequiredService<IdentityServerDbContext>();
-//        var configDb = scope.ServiceProvider.GetRequiredService<ConfigurationDbContext>();
-//        var persistedGrantDb = scope.ServiceProvider.GetRequiredService<PersistedGrantDbContext>();
-//        configDb.Database.Migrate();
-//        persistedGrantDb.Database.Migrate();
-//        identityServerDb.Database.Migrate();
-//    }
-//    catch (Exception ex)
-//    {
-//        var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
-//        logger.LogError(ex, "Smth went wrong");
-//        throw;
-//    }
-//}
+using (var scope = app.Services.CreateScope())
+{
+    try
+    {
+        var identityServerDb = scope.ServiceProvider.GetRequiredService<IdentityServerDbContext>();
+        var configDb = scope.ServiceProvider.GetRequiredService<ConfigurationDbContext>();
+        var persistedGrantDb = scope.ServiceProvider.GetRequiredService<PersistedGrantDbContext>();
+        configDb.Database.Migrate();
+        persistedGrantDb.Database.Migrate();
+        identityServerDb.Database.Migrate();
+    }
+    catch (Exception ex)
+    {
+        var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex, "Smth went wrong");
+        throw;
+    }
+}
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();

@@ -29,15 +29,36 @@ namespace Menu.Application.UseCases.Handlers.OperationHandlers
         {
             try
             {
+                Console.WriteLine($"Start handling PayOrderCommand for UserId: {request.userId}");
 
-                var isTheProductInTheBag =await dbContext.Bags.Where(x => x.UserId == request.userId).ToListAsync();
+                var isTheProductInTheBag = await dbContext.Bags
+                    .Where(x => x.UserId == request.userId)
+                    .ToListAsync();
 
-                OrderPayedEvent orderPayedEvent = new OrderPayedEvent();
+                if (isTheProductInTheBag.Count == 0)
+                {
+                    Console.WriteLine($"No products in the bag for UserId: {request.userId}");
+                    return false;
+                }
 
-                orderPayedEvent.UserId = request.userId;
+                Console.WriteLine($"Fetched {isTheProductInTheBag.Count} products in the bag for UserId: {request.userId}");
+
+                OrderPayedEvent orderPayedEvent = new OrderPayedEvent
+                {
+                    UserId = request.userId,
+                    Order_Products = new List<Order_Product>()
+                };
+
                 foreach (var item in isTheProductInTheBag)
                 {
-                    var product = await dbContext.Products.FirstOrDefaultAsync(x=>x.Id == item.ProductId);
+                    var product = await dbContext.Products.FirstOrDefaultAsync(x => x.Id == item.ProductId);
+
+                    if (product == null)
+                    {
+                        Console.WriteLine($"Product with Id: {item.ProductId} not found");
+                        continue;
+                    }
+
                     Order_Product temp = new Order_Product
                     {
                         ProductName = product.Name,
@@ -46,19 +67,24 @@ namespace Menu.Application.UseCases.Handlers.OperationHandlers
                         ProductPrice = product.Price,
                         ProductPhoto = product.Photo
                     };
+
                     orderPayedEvent.Order_Products.Add(temp);
+
+                    Console.WriteLine($"Added product to OrderPayedEvent: {product.Name}, Count: {item.Count}");
                 }
 
                 dbContext.Bags.RemoveRange(isTheProductInTheBag);
                 await dbContext.SaveChangesAsync();
-                await _publisher.Publish(orderPayedEvent);
+                Console.WriteLine("Removed products from the bag and saved changes");
 
+                await _publisher.Publish(orderPayedEvent);
+                Console.WriteLine($"Published OrderPayedEvent for UserId: {request.userId}");
 
                 return true;
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error occurred while creating user");
+                Console.WriteLine($"Error occurred while processing order payment for UserId: {request.userId} - {ex}");
                 return false;
             }
         }

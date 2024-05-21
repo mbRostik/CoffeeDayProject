@@ -29,22 +29,21 @@ namespace ContactUs.WebApi.Controllers
 
                 if (string.IsNullOrWhiteSpace(userId))
                 {
-                    Console.WriteLine("ChangeUserSettings was called but no user ID was found in the claims.");
+                    Console.WriteLine("SendUsMessage was called but no user ID was found in the claims.");
                     return Unauthorized("User ID not found.");
                 }
 
-                Console.WriteLine("Starting ChangeUserSettings for user.");
+                Console.WriteLine("Starting SendUsMessage for user.");
 
                 model.UserId = userId;
                 await mediator.Send(new CreateMessageCommand(model));
 
-                Console.WriteLine("Successfully changed settings for user.");
+                Console.WriteLine("SuccessfullySendUsMessage for user.");
                 return Ok();
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex + "Error changing settings for user.");
-                return StatusCode(500, "An error occurred while changing user settings.");
+                return StatusCode(500, "An error occurred while SendUsMessage.");
             }
 
         }

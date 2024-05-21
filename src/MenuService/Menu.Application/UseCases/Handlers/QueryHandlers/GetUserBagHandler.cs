@@ -3,6 +3,7 @@ using Menu.Application.Contracts.GetDTOs;
 using Menu.Application.UseCases.Queries;
 using Menu.Domain;
 using Menu.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,9 @@ namespace Menu.Application.UseCases.Handlers.QueryHandlers
         {
             try
             {
-                var result = dbContext.Bags
+                Console.WriteLine($"Fetching bag items for UserId: {request.userId}");
+
+                var result = await dbContext.Bags
                     .Where(b => b.UserId == request.userId)
                     .Join(
                         dbContext.Products,
@@ -39,13 +42,15 @@ namespace Menu.Application.UseCases.Handlers.QueryHandlers
                             Price = product.Price,
                             Count = bag.Count
                         })
-                    .ToList();
+                    .ToListAsync(cancellationToken);
+
+                Console.WriteLine($"Fetched {result.Count} bag items for UserId: {request.userId}");
 
                 return result;
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString());
+                Console.WriteLine($"Error occurred while fetching bag items for UserId: {request.userId} - {ex}");
                 return null;
             }
         }

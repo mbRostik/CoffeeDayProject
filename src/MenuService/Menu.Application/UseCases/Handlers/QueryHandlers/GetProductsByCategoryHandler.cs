@@ -2,6 +2,7 @@
 using Menu.Application.UseCases.Queries;
 using Menu.Domain;
 using Menu.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,20 +25,26 @@ namespace Menu.Application.UseCases.Handlers.QueryHandlers
         {
             try
             {
-                var categoryWithProductIds = dbContext.CategoriesWithProducts
+                Console.WriteLine($"Fetching products for CategoryId: {request.categoryId}");
+
+                var categoryWithProductIds = await dbContext.CategoriesWithProducts
                     .Where(x => x.CategoryId == request.categoryId)
                     .Select(x => x.ProductId)
-                    .ToArray();
+                    .ToArrayAsync();
 
-                var products = dbContext.Products
+                Console.WriteLine($"Found {categoryWithProductIds.Length} product IDs for CategoryId: {request.categoryId}");
+
+                var products = await dbContext.Products
                     .Where(p => categoryWithProductIds.Contains(p.Id))
-                    .ToList();
-                Console.WriteLine();
+                    .ToListAsync();
+
+                Console.WriteLine($"Fetched {products.Count} products for CategoryId: {request.categoryId}");
+
                 return products;
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString());
+                Console.WriteLine($"Error occurred while fetching products for CategoryId: {request.categoryId} - {ex}");
                 return null;
             }
         }

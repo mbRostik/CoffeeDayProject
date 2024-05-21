@@ -22,15 +22,15 @@ namespace Menu.Infrastructure.Data
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(MenuDbContext).Assembly);
             modelBuilder.Entity<Category>().HasData(
-                        new Category { Id = 1, Name = "Water", Photo = GetImageBytes("images/water-bottle.png") },
-                        new Category { Id = 2, Name = "Coffee", Photo = GetImageBytes("images/coffee-cup.png") },
-                        new Category { Id = 3, Name = "Smoothie", Photo = GetImageBytes("images/banana.png") },
-                        new Category { Id = 4, Name = "MilkShake", Photo = GetImageBytes("images/milkshake.png") },
-                        new Category { Id = 5, Name = "Pressed juice", Photo = GetImageBytes("images/wine-press.png") },
-                        new Category { Id = 6, Name = "Salad", Photo = GetImageBytes("images/salad.png") },
-                        new Category { Id = 7, Name = "Soup", Photo = GetImageBytes("images/winter-melon-soup.png") },
-                        new Category { Id = 9, Name = "Sandwich", Photo = GetImageBytes("images/bread.png") },
-                        new Category { Id = 10, Name = "Soft Drinks", Photo = GetImageBytes("images/soft-drink.png") }
+                        new Category { Id = 1, Name = "Water", Photo = GetImageBytes("water-bottle.png") },
+                        new Category { Id = 2, Name = "Coffee", Photo = GetImageBytes("coffee-cup.png") },
+                        new Category { Id = 3, Name = "Smoothie", Photo = GetImageBytes("banana.png") },
+                        new Category { Id = 4, Name = "MilkShake", Photo = GetImageBytes("milkshake.png") },
+                        new Category { Id = 5, Name = "Pressed juice", Photo = GetImageBytes("wine-press.png") },
+                        new Category { Id = 6, Name = "Salad", Photo = GetImageBytes("salad.png") },
+                        new Category { Id = 7, Name = "Soup", Photo = GetImageBytes("winter-melon-soup.png") },
+                        new Category { Id = 9, Name = "Sandwich", Photo = GetImageBytes("bread.png") },
+                        new Category { Id = 10, Name = "Soft Drinks", Photo = GetImageBytes("soft-drink.png") }
                     );
 
             modelBuilder.Entity<Product>().HasData(
@@ -66,9 +66,10 @@ namespace Menu.Infrastructure.Data
 
         public static byte[] GetImageBytes(string relativePath)
         {
-            var absolutePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativePath);
+            var absolutePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "images", relativePath);
             return File.ReadAllBytes(absolutePath);
         }
+
     }
 }
 

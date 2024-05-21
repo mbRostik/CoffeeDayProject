@@ -9,6 +9,9 @@ using Duende.IdentityServer.Stores;
 using IdentityServerHost.Pages.Login;
 using MailKit.Net.Smtp;
 using MailKit.Security;
+using MassTransit;
+using MassTransit.RabbitMqTransport;
+using MessageBus.Messages.User;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -30,13 +33,17 @@ public class RegisterModel : PageModel
     private readonly UserManager<IdentityUser> _userManager;
     private readonly SignInManager<IdentityUser> _signInManager;
     private readonly IConfiguration _configuration;
+    private readonly IPublishEndpoint _publisher;
+
     public RegisterModel(
         UserManager<IdentityUser> userManager,
         SignInManager<IdentityUser> signInManager,
-        IConfiguration configuration)
+        IConfiguration configuration, IPublishEndpoint _publisher
+)
     {
         _userManager = userManager;
-        _configuration= configuration;
+        this._publisher = _publisher;
+        _configuration = configuration;
         _signInManager = signInManager;
     }
 
@@ -112,15 +119,16 @@ public class RegisterModel : PageModel
                     message.Body = $"Please confirm your account by <a href='{callbackUrl}'>clicking here</a>.";
                     message.IsBodyHtml = true;
 
-                    var smtpClient = new System.Net.Mail.SmtpClient(_configuration.GetValue<string>("EmailSettings:Host"))
+                    var resultConfirmation = await _userManager.ConfirmEmailAsync(user, code);
+
+                    UserCreationEvent creationEvent = new UserCreationEvent
                     {
-                        Port = 587,
-                        Credentials = new NetworkCredential(_configuration.GetValue<string>("EmailSettings:Email"), _configuration.GetValue<string>("EmailSettings:Password")),
-                        EnableSsl = true
-
+                        UserId = user.Id,
+                        Email = user.Email,
+                        UserName = user.UserName
                     };
+                    await _publisher.Publish(creationEvent);
 
-                    smtpClient.Send(message);
                     if (ReturnUrl != null && ReturnUrl != "")
                     {
                         return LocalRedirect(ReturnUrl);

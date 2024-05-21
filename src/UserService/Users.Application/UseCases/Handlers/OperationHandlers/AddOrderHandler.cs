@@ -29,10 +29,14 @@ namespace Users.Application.UseCases.Handlers.OperationHandlers
         {
             try
             {
+                Console.WriteLine("Start handling AddOrderCommand");
+
                 List<Product> newProducts = new List<Product>();
 
                 foreach (var model in request.model.Order_Products)
                 {
+                    Console.WriteLine($"Processing product: {model.ProductName}");
+
                     var existingProduct = await dbContext.Products
                         .FirstOrDefaultAsync(x => x.ProductName == model.ProductName &&
                                                   x.ProductPrice == model.ProductPrice &&
@@ -40,6 +44,8 @@ namespace Users.Application.UseCases.Handlers.OperationHandlers
 
                     if (existingProduct == null)
                     {
+                        Console.WriteLine($"Product not found, creating new product: {model.ProductName}");
+
                         var product = new Product
                         {
                             ProductName = model.ProductName,
@@ -49,14 +55,19 @@ namespace Users.Application.UseCases.Handlers.OperationHandlers
                         };
                         var newProduct = await dbContext.Products.AddAsync(product);
                         newProducts.Add(newProduct.Entity);
+
+                        Console.WriteLine($"New product added: {newProduct.Entity.ProductName}");
                     }
                     else
                     {
                         newProducts.Add(existingProduct);
+
+                        Console.WriteLine($"Existing product found: {existingProduct.ProductName}");
                     }
                 }
 
                 await dbContext.SaveChangesAsync();
+                Console.WriteLine("Products saved to database");
 
                 var order = new OrderHistory
                 {
@@ -66,6 +77,7 @@ namespace Users.Application.UseCases.Handlers.OperationHandlers
 
                 var newOrder = await dbContext.OrderHistories.AddAsync(order);
                 await dbContext.SaveChangesAsync();
+                Console.WriteLine($"Order created with ID: {newOrder.Entity.Id}");
 
                 List<Order_Products> orderProducts = new List<Order_Products>();
 
@@ -85,15 +97,20 @@ namespace Users.Application.UseCases.Handlers.OperationHandlers
                             Count = model.ProductCount
                         };
                         orderProducts.Add(orderProduct);
+
+                        Console.WriteLine($"Order_Product added: OrderId = {newOrder.Entity.Id}, ProductId = {product.Id}, Count = {model.ProductCount}");
                     }
                 }
 
                 await dbContext.OrderProducts.AddRangeAsync(orderProducts);
                 await dbContext.SaveChangesAsync();
+                Console.WriteLine("Order_Products saved to database");
+
+                Console.WriteLine("Finished handling AddOrderCommand");
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
+                Console.WriteLine($"Exception occurred: {ex}");
                 return;
             }
         }

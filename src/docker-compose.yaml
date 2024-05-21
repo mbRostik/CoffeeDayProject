@@ -1,0 +1,83 @@
+version: '3.6'
+
+services:
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:3.13-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+  mssql:
+    container_name: mssql
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      SA_PASSWORD: "PrudymaiyPotimVidRostik123456!@"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+
+  userwebapi-api:
+    container_name: userwebapi-api
+    image: userwebapi-api
+    build:
+      context: .
+      dockerfile: User.Dockerfile
+    ports:
+      - "5235:8080"
+      - "7183:8081"
+    environment:
+      - "ConnectionStrings__MSSQLConnection=Server=mssql;Database=UserDB;User Id=sa;Password=PrudymaiyPotimVidRostik123456!@;Encrypt=False;"
+
+
+  menuwebapi-api:
+    container_name: menuwebapi-api
+    image: menuwebapi-api
+    build:
+      context: .
+      dockerfile: Menu.Dockerfile
+    ports:
+      - "5170:8080"
+      - "7161:8081"
+    environment:
+      - "ConnectionStrings__MSSQLConnection=Server=mssql;Database=MenuDb;User Id=sa;Password=PrudymaiyPotimVidRostik123456!@;Encrypt=False;"
+  
+  contactuswebapi-api:
+    container_name: contactuswebapi-api
+    image: contactuswebapi-api
+    build:
+      context: .
+      dockerfile: ContactUs.Dockerfile
+    ports:
+      - "5244:8080"
+      - "7245:8081"
+    environment:
+      - "ConnectionStrings__MSSQLConnection=Server=mssql;Database=ContactUsDb;User Id=sa;Password=PrudymaiyPotimVidRostik123456!@;Encrypt=False;"
+  ocelotgateway-api:
+    container_name: ocelotgateway-api
+    image: ocelotgateway-api
+    build:
+      context: .
+      dockerfile: Ocelot.Dockerfile
+    ports:
+      - "5213:8080"
+      - "7062:8081"
+
+  identityserverapi-api:
+    container_name: identityserverapi-api
+    image: identityserverapi-api
+    build:
+      context: .
+      dockerfile: IdentityServer.Dockerfile
+    ports:
+      - "5046:8080"
+      - "7174:8081"
+    environment:
+      - "ConnectionStrings__MSSQLConnection=Server=mssql;Database=IdentityServer;User Id=sa;Password=PrudymaiyPotimVidRostik123456!@;Encrypt=False;"
+      - "EmailSettings__Email=rost.daskalyuk@gmail.com"
+      - "EmailSettings__Host=smtp.gmail.com"
+      - "EmailSettings__Password=ueexgknctftcjnpo"
+      - "Links__ReactLink=https://localhost:5173/"
+      - "Links__BaseUrl=https://localhost:7174/"
+      - "Authentication__Google__ClientId=1064660972104-obge6n4doce8e37e9edrcu7tk4dvktb5.apps.googleusercontent.com"
+      - "Authentication__Google__ClientSecret=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"

@@ -25,25 +25,33 @@ namespace Menu.Application.UseCases.Handlers.OperationHandlers
         {
             try
             {
+                Console.WriteLine($"Start handling RemoveAllProductsFromTheBagCommand for UserId: {request.userId}, ProductId: {request.model.ProductId}");
 
-                var isTheProductInTheBag = await dbContext.Bags.FirstOrDefaultAsync(x => x.UserId == request.userId && x.ProductId == request.model.ProductId);
+                var isTheProductInTheBag = await dbContext.Bags.FirstOrDefaultAsync(
+                    x => x.UserId == request.userId && x.ProductId == request.model.ProductId);
 
                 if (isTheProductInTheBag == null)
                 {
+                    Console.WriteLine("Product not found in the bag.");
                     return true;
                 }
                 else
                 {
+                    Console.WriteLine("Product found in the bag. Removing...");
+
                     dbContext.Bags.Remove(isTheProductInTheBag);
                     await dbContext.SaveChangesAsync();
+
+                    Console.WriteLine("Product removed from the bag and changes saved.");
                     return true;
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error occurred while creating user");
+                Console.WriteLine($"Error occurred while removing product from the bag for UserId: {request.userId}, ProductId: {request.model.ProductId} - {ex}");
                 return false;
             }
         }
     }
 }
+

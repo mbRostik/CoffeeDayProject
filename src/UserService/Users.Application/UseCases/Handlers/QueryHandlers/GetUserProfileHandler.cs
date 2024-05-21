@@ -25,28 +25,36 @@ namespace Users.Application.UseCases.Handlers.QueryHandlers
         {
             try
             {
-               
+                Console.WriteLine($"Start handling GetUserProfileQuery for UserId: {request.id}");
+
                 var dbUser = await dbContext.Users.AsNoTracking().FirstOrDefaultAsync(u => u.Id == request.id);
 
-           
-                GetUserProfileDTO userInfo = new GetUserProfileDTO 
+                if (dbUser == null)
                 {
-                    Name= dbUser.Name,
-                    Email= dbUser.Email,
+                    Console.WriteLine($"User with UserId: {request.id} not found");
+                    return null;
+                }
+
+                Console.WriteLine($"User found: {dbUser.Name}");
+
+                GetUserProfileDTO userInfo = new GetUserProfileDTO
+                {
+                    Name = dbUser.Name,
+                    Email = dbUser.Email,
                     Preferences = dbUser.Preferences,
                     Photo = dbUser.Photo,
                     DateOfBirth = dbUser.DateOfBirth
                 };
 
-              
+                Console.WriteLine($"Returning user profile for UserId: {request.id}");
+
                 return userInfo;
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
+                Console.WriteLine($"Exception occurred while handling GetUserProfileQuery for UserId: {request.id} - {ex}");
                 return null;
             }
-
         }
     }
 }

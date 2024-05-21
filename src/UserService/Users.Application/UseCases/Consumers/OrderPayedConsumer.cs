@@ -20,7 +20,7 @@ namespace Users.Application.UseCases.Consumers
         }
         public async Task Consume(ConsumeContext<OrderPayedEvent> context)
         {
-            Console.WriteLine($"Successfully consumed UserCreationEvent");
+            Console.WriteLine($"Successfully consumed OrderPayedEvent");
 
             await mediator.Send(new AddOrderCommand(context.Message));
         }

@@ -82,22 +82,22 @@ namespace Users.WebApi.Controllers
 
                 if (string.IsNullOrWhiteSpace(userId))
                 {
-                    Console.WriteLine("ChangeUserSettings was called but no user ID was found in the claims.");
+                    Console.WriteLine("GetUserOrders was called but no user ID was found in the claims.");
                     return Unauthorized("User ID not found.");
                 }
 
-                Console.WriteLine("Starting ChangeUserSettings for user.");
+                Console.WriteLine("Starting GetUserOrders for user.");
 
                 
                 var result = await mediator.Send(new GetUserOrdersQuery(userId));
 
-                Console.WriteLine("Successfully changed settings for user.");
+                Console.WriteLine("Successfully GetUserOrders for user.");
                 return Ok(result);
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex + "Error changing settings for user.");
-                return StatusCode(500, "An error occurred while changing user settings.");
+                Console.WriteLine(ex + "Error GetUserOrders for user.");
+                return StatusCode(500, "An error occurred while GetUserOrders.");
             }
 
         }
@@ -113,22 +113,22 @@ namespace Users.WebApi.Controllers
 
                 if (string.IsNullOrWhiteSpace(userId))
                 {
-                    Console.WriteLine("ChangeUserSettings was called but no user ID was found in the claims.");
+                    Console.WriteLine("GetUserOrderDetails was called but no user ID was found in the claims.");
                     return Unauthorized("User ID not found.");
                 }
 
-                Console.WriteLine("Starting ChangeUserSettings for user.");
+                Console.WriteLine("Starting GetUserOrderDetails for user.");
 
 
                 var result = await mediator.Send(new GetUserOrderDetailsQuery(model.Id));
 
-                Console.WriteLine("Successfully changed settings for user.");
+                Console.WriteLine("Successfully GetUserOrderDetails for user.");
                 return Ok(result);
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex + "Error changing settings for user.");
-                return StatusCode(500, "An error occurred while changing user settings.");
+                Console.WriteLine(ex + "Error GetUserOrderDetails for user.");
+                return StatusCode(500, "An error occurred while GetUserOrderDetails user settings.");
             }
 
         }
