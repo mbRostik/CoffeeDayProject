@@ -22,14 +22,14 @@ var assembly = typeof(Program).Assembly.GetName().Name;
 var assembly2 = typeof(IdentityServerDbContext).Assembly.GetName().Name;
 
 var defaultConnString = builder.Configuration.GetConnectionString("MSSQLConnection");
-builder.WebHost.ConfigureKestrel((context, options) =>
-{
-    options.Listen(IPAddress.Any, 8080);
-    options.Listen(IPAddress.Any, 8081, listenOptions =>
-    {
-        listenOptions.UseHttps("https/identityserverapi-api.pfx", "pa55w0rd!");
-    });
-});
+//builder.WebHost.ConfigureKestrel((context, options) =>
+//{
+//    options.Listen(IPAddress.Any, 8080);
+//    options.Listen(IPAddress.Any, 8081, listenOptions =>
+//    {
+//        listenOptions.UseHttps("https/identityserverapi-api.pfx", "pa55w0rd!");
+//    });
+//});
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
@@ -112,7 +112,7 @@ builder.Services.AddMassTransit(x =>
 {
     x.UsingRabbitMq((cxt, cfg) =>
     {
-        cfg.Host("rabbitmq", "/", h =>
+        cfg.Host("localhost", "/", h =>
         {
             h.Username("guest");
             h.Password("guest");

@@ -3,7 +3,10 @@ using ContactUs.Application.UseCases.Commands;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Net.Http;
 using System.Security.Claims;
+using System.Text.Json;
+using System.Text;
 
 namespace ContactUs.WebApi.Controllers
 {
@@ -14,8 +17,10 @@ namespace ContactUs.WebApi.Controllers
     public class ContactUsController : ControllerBase
     {
         private readonly IMediator mediator;
-        public ContactUsController(IMediator mediator)
+        private readonly HttpClient _httpClient;
+        public ContactUsController(IMediator mediator, HttpClient httpClient)
         {
+            _httpClient = httpClient;
             this.mediator = mediator;
         }
 
@@ -35,14 +40,39 @@ namespace ContactUs.WebApi.Controllers
 
                 Console.WriteLine("Starting SendUsMessage for user.");
 
+                var spamCheckPayload = new { text = model.User_Message };
+                var jsonPayload = JsonSerializer.Serialize(spamCheckPayload);
+                var content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
+
+                var spamResponse = await _httpClient.PostAsync("http://127.0.0.1:5000/predict_spam", content);
+
+                if (spamResponse.IsSuccessStatusCode)
+                {
+                    var responseString = await spamResponse.Content.ReadAsStringAsync();
+                    var responseJson = JsonDocument.Parse(responseString);
+                    var isSpam = responseJson.RootElement.GetProperty("prediction").GetString() == "spam";
+
+                    if (isSpam)
+                    {
+                        Console.WriteLine("Message identified as spam.");
+                        return BadRequest("The message was detected as spam.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Spam detection service is unavailable.");
+                    return StatusCode(500, "Spam detection service is unavailable.");
+                }
+
                 model.UserId = userId;
                 await mediator.Send(new CreateMessageCommand(model));
 
-                Console.WriteLine("SuccessfullySendUsMessage for user.");
+                Console.WriteLine("Successfully sent message for user.");
                 return Ok();
             }
             catch (Exception ex)
             {
+                Console.WriteLine($"An error occurred in SendUsMessage: {ex.Message}");
                 return StatusCode(500, "An error occurred while SendUsMessage.");
             }
 

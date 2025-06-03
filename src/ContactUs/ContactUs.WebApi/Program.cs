@@ -16,18 +16,18 @@ string? connectionString = builder.Configuration.GetConnectionString("MSSQLConne
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-builder.WebHost.ConfigureKestrel((context, options) =>
-{
-    options.Listen(IPAddress.Any, 8080, listenOptions =>
-    {
-        listenOptions.Protocols = HttpProtocols.Http1;
-    });
-    options.Listen(IPAddress.Any, 8081, listenOptions =>
-    {
-        listenOptions.Protocols = HttpProtocols.Http2;
-    });
-});
+builder.Services.AddHttpClient();
+//builder.WebHost.ConfigureKestrel((context, options) =>
+//{
+//    options.Listen(IPAddress.Any, 8080, listenOptions =>
+//    {
+//        listenOptions.Protocols = HttpProtocols.Http1;
+//    });
+//    options.Listen(IPAddress.Any, 8081, listenOptions =>
+//    {
+//        listenOptions.Protocols = HttpProtocols.Http2;
+//    });
+//});
 builder.Services.AddDbContext<ContactUsDbContext>(options =>
 {
     options.UseSqlServer(connectionString);
@@ -44,7 +44,7 @@ builder.Services.AddMassTransit(x =>
 
     x.UsingRabbitMq((context, cfg) =>
     {
-        cfg.Host("rabbitmq", "/", h =>
+        cfg.Host("localhost", "/", h =>
         {
             h.Username("guest");
             h.Password("guest");

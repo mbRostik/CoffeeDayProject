@@ -15,7 +15,7 @@ const ContactUs = () => {
         setIsAuthorizedState,
         setUserState,
         setUserDataState } = useAuth();
-
+    const [isSpamMessage, setIsSpamMessage] = useState(false); 
 
 
     useEffect(() => {
@@ -35,6 +35,7 @@ const ContactUs = () => {
 
 
     const handleSubmit = async () => {
+        setIsSpamMessage(false);
         setLoadingState(true);
         const updatedUserData = {
             name,
@@ -58,12 +59,15 @@ const ContactUs = () => {
                 setName(null);
                 setEmail(null);
                 setMessage(null);
-            } else {
-                throw new Error('Failed to update profile');
+            } else if (response.status === 400) {
+                setIsSpamMessage(true);
+            }
+            else {
+                throw new Error('Failed to send message');
             }
         } catch (error) {
             console.error('Error while sending message:', error);
-            alert('An error occurred while updating the profile.');
+            alert('An error occurred while updating the prfefefefefefefefefeofile.');
         } finally {
             setLoadingState(false);
         }
@@ -118,6 +122,11 @@ const ContactUs = () => {
                                     required
                                 ></textarea>
                                 <button type="submit" className="submit-button">Submit</button>
+                                {isSpamMessage && (
+                                    <div className="spam-warning-text" style={{ color: 'red', marginTop: '10px' }}>
+                                        Your message was recognized as spam.
+                                    </div>
+                                )}
                             </form>
                         </div>
                 </div>

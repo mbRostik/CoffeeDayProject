@@ -17,7 +17,7 @@ const Profile = () => {
         setUserState,
         setUserDataState } = useAuth();
 
-
+    const [isNoPersonWarning, setIsNoPersonWarning] = useState(false);
 
     useEffect(() => {
         if (isAuthorized) {
@@ -85,7 +85,7 @@ const Profile = () => {
         const file = e.target.files[0];
         const maxSize = 5 * 1024 * 1024;
         const maxResolution = 1920;
-
+        setIsNoPersonWarning(false);
         if (file && !isImageFile(file)) {
             setLoadingState(false);
             return;
@@ -128,8 +128,13 @@ const Profile = () => {
                                 },
                                 body: JSON.stringify({ avatar: base64Avatar })
                             });
-                            const data = await response.json();
-                            setUserDataState(data);
+                            if (!response.ok && response.status === 400) {
+                                setIsNoPersonWarning(true);
+                            } else {
+                                const data = await response.json();
+                                setUserDataState(data);
+                                setIsNoPersonWarning(false); 
+                            }
 
 
                         } catch (err) {
@@ -230,8 +235,15 @@ const Profile = () => {
                                         <label className="edit-button" onClick={handleImageDelete}>
                                             Delete
                                         </label>
+                                        
                                     </div>
+
                                 </div>
+                                {isNoPersonWarning && (
+                                    <div className="no-person-warning" style={{ color: 'red', marginTop: '10px' }}>
+                                        The uploaded photo must contain a person.
+                                    </div>
+                                )}
                     </div>
                     <div className="Right_ProfileDiv">
                                 <div className="Right_ProfileDiv_Title">

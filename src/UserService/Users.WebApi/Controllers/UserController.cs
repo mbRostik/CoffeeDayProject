@@ -2,7 +2,10 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Security.Claims;
+using System.Text.Json;
 using Users.Application.Contracts.ChangeDTOs;
 using Users.Application.Contracts.GetDTOs;
 using Users.Application.Contracts.SendDTOs;
@@ -17,9 +20,11 @@ namespace Users.WebApi.Controllers
     public class UserController : ControllerBase
     {
         private readonly IMediator mediator;
-        public UserController(IMediator mediator)
+        private readonly HttpClient _httpClient;
+        public UserController(IMediator mediator, HttpClient httpClient)
         {
             this.mediator = mediator;
+            _httpClient = httpClient;
         }
 
         [HttpGet("GetUserProfile")]
@@ -138,7 +143,6 @@ namespace Users.WebApi.Controllers
         [HttpPost("UploadProfilePhoto")]
         public async Task<ActionResult<GetUserProfileDTO>> UploadProfilePhoto([FromBody] ChangeProfilePhotoDTO model)
         {
-
             var userId = HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
 
             if (string.IsNullOrEmpty(userId))
@@ -151,10 +155,44 @@ namespace Users.WebApi.Controllers
             {
                 Console.WriteLine("Attempting to upload profile photo for user");
 
+                // Convert base64 string to image file
+                byte[] imageBytes = Convert.FromBase64String(model.Avatar);
+                using (var imageContent = new ByteArrayContent(imageBytes))
+                {
+                    imageContent.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
+
+                    using (var formData = new MultipartFormDataContent())
+                    {
+                        formData.Add(imageContent, "image", "avatar.jpg");
+
+                        // Send request to detect_person endpoint
+                        var response = await _httpClient.PostAsync("http://127.0.0.1:5000/detect_person", formData);
+                        var responseString = await response.Content.ReadAsStringAsync();
+
+                        if (response.IsSuccessStatusCode)
+                        {
+                            var jsonResponse = JsonDocument.Parse(responseString);
+                            bool isPerson = jsonResponse.RootElement.GetProperty("is_person").GetBoolean();
+
+                            if (!isPerson)
+                            {
+                                Console.WriteLine("The uploaded image does not contain a person.");
+                                return BadRequest("The uploaded photo must contain a person.");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Person detection service is unavailable.");
+                            return StatusCode(500, "Person detection service is unavailable.");
+                        }
+                    }
+                }
+
+                // Proceed with updating the profile photo if person detection passed
                 model.Id = userId;
                 await mediator.Send(new ChangeUserAvatarCommand(model));
 
-                Console.WriteLine("Profile photo updated successfully for user Fetching updated user profile.");
+                Console.WriteLine("Profile photo updated successfully for user. Fetching updated user profile.");
 
                 var result = await mediator.Send(new GetUserProfileQuery(model.Id));
 

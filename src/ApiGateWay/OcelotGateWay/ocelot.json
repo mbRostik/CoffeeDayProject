@@ -2,12 +2,12 @@
   "Routes": [
     {
       "UpstreamPathTemplate": "/ocelot/GetUserProfile",
-      "UpstreamHttpMethod": [ "Get" ],
-      "DownstreamScheme": "http",
+      "UpstreamhttpsMethod": [ "Get" ],
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "userwebapi-api",
-          "Port": 8080
+          "Host": "localhost",
+          "Port": 7183
         }
       ],
       "DownstreamPathTemplate": "/User/GetUserProfile",
@@ -20,12 +20,12 @@
 
     {
       "UpstreamPathTemplate": "/ocelot/userUpdate",
-      "UpstreamHttpMethod": [ "Post" ],
-      "DownstreamScheme": "http",
+      "UpstreamhttpsMethod": [ "Post" ],
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "userwebapi-api",
-          "Port": 8080
+          "Host": "localhost",
+          "Port": 7183
         }
       ],
       "DownstreamPathTemplate": "/User/ChangeUserSettings",
@@ -39,12 +39,12 @@
 
     {
       "UpstreamPathTemplate": "/ocelot/GetUserOrders",
-      "UpstreamHttpMethod": [ "Get" ],
-      "DownstreamScheme": "http",
+      "UpstreamhttpsMethod": [ "Get" ],
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "userwebapi-api",
-          "Port": 8080
+          "Host": "localhost",
+          "Port": 7183
         }
       ],
       "DownstreamPathTemplate": "/User/GetUserOrders",
@@ -60,12 +60,12 @@
 
     {
       "UpstreamPathTemplate": "/ocelot/GetUserOrderDetails",
-      "UpstreamHttpMethod": [ "Post" ],
-      "DownstreamScheme": "http",
+      "UpstreamhttpsMethod": [ "Post" ],
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "userwebapi-api",
-          "Port": 8080
+          "Host": "localhost",
+          "Port": 7183
         }
       ],
       "DownstreamPathTemplate": "/User/GetUserOrderDetails",
@@ -79,12 +79,12 @@
 
     {
       "UpstreamPathTemplate": "/ocelot/userProfilePhotoUpload",
-      "UpstreamHttpMethod": [ "Post" ],
-      "DownstreamScheme": "http",
+      "UpstreamhttpsMethod": [ "Post" ],
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "userwebapi-api",
-          "Port": 8080
+          "Host": "localhost",
+          "Port": 7183
         }
       ],
       "DownstreamPathTemplate": "/User/UploadProfilePhoto",
@@ -97,12 +97,12 @@
 
     {
       "UpstreamPathTemplate": "/ocelot/contactUs",
-      "UpstreamHttpMethod": [ "Post" ],
-      "DownstreamScheme": "http",
+      "UpstreamhttpsMethod": [ "Post" ],
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "contactuswebapi-api",
-          "Port": 8080
+          "Host": "localhost",
+          "Port": 7245
         }
       ],
       "DownstreamPathTemplate": "/ContactUs/SendUsMessage",
@@ -115,12 +115,12 @@
 
     {
       "UpstreamPathTemplate": "/ocelot/GetAllCategories",
-      "UpstreamHttpMethod": [ "Get" ],
-      "DownstreamScheme": "http",
+      "UpstreamhttpsMethod": [ "Get" ],
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "menuwebapi-api",
-          "Port": 8080
+          "Host": "localhost",
+          "Port": 7161
         }
       ],
       "DownstreamPathTemplate": "/Menu/GetAllCategories",
@@ -133,12 +133,12 @@
 
     {
       "UpstreamPathTemplate": "/ocelot/GetProductsByCategory",
-      "UpstreamHttpMethod": [ "Post" ],
-      "DownstreamScheme": "http",
+      "UpstreamhttpsMethod": [ "Post" ],
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "menuwebapi-api",
-          "Port": 8080
+          "Host": "localhost",
+          "Port": 7161
         }
       ],
       "DownstreamPathTemplate": "/Menu/GetProductsByCategory",
@@ -151,12 +151,12 @@
 
     {
       "UpstreamPathTemplate": "/ocelot/GetAllProducts",
-      "UpstreamHttpMethod": [ "Get" ],
-      "DownstreamScheme": "http",
+      "UpstreamhttpsMethod": [ "Get" ],
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "menuwebapi-api",
-          "Port": 8080
+          "Host": "localhost",
+          "Port": 7161
         }
       ],
       "DownstreamPathTemplate": "/Menu/GetAllProducts",
@@ -169,12 +169,12 @@
 
     {
       "UpstreamPathTemplate": "/ocelot/GetUserBag",
-      "UpstreamHttpMethod": [ "Get" ],
-      "DownstreamScheme": "http",
+      "UpstreamhttpsMethod": [ "Get" ],
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "menuwebapi-api",
-          "Port": 8080
+          "Host": "localhost",
+          "Port": 7161
         }
       ],
       "DownstreamPathTemplate": "/Menu/GetUserBag",
@@ -187,12 +187,12 @@
 
     {
       "UpstreamPathTemplate": "/ocelot/AddProductToTheBag",
-      "UpstreamHttpMethod": [ "Post" ],
-      "DownstreamScheme": "http",
+      "UpstreamhttpsMethod": [ "Post" ],
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "menuwebapi-api",
-          "Port": 8080
+          "Host": "localhost",
+          "Port": 7161
         }
       ],
       "DownstreamPathTemplate": "/Menu/AddProductToTheBag",
@@ -205,12 +205,12 @@
 
     {
       "UpstreamPathTemplate": "/ocelot/RemoveProductFromTheBag",
-      "UpstreamHttpMethod": [ "Post" ],
-      "DownstreamScheme": "http",
+      "UpstreamhttpsMethod": [ "Post" ],
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "menuwebapi-api",
-          "Port": 8080
+          "Host": "localhost",
+          "Port": 7161
         }
       ],
       "DownstreamPathTemplate": "/Menu/RemoveProductFromTheBag",
@@ -223,12 +223,12 @@
 
     {
       "UpstreamPathTemplate": "/ocelot/RemoveAllProductsFromTheBag",
-      "UpstreamHttpMethod": [ "Post" ],
-      "DownstreamScheme": "http",
+      "UpstreamhttpsMethod": [ "Post" ],
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "menuwebapi-api",
-          "Port": 8080
+          "Host": "localhost",
+          "Port": 7161
         }
       ],
       "DownstreamPathTemplate": "/Menu/RemoveAllProductsFromTheBag",
@@ -241,12 +241,12 @@
 
     {
       "UpstreamPathTemplate": "/ocelot/PayOrder",
-      "UpstreamHttpMethod": [ "Post" ],
-      "DownstreamScheme": "http",
+      "UpstreamhttpsMethod": [ "Post" ],
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "menuwebapi-api",
-          "Port": 8080
+          "Host": "localhost",
+          "Port": 7161
         }
       ],
       "DownstreamPathTemplate": "/Menu/PayOrder",
@@ -259,7 +259,7 @@
   ],
 
   "GlobalConfiguration": {
-    "BaseUrl": "http://localhost:5000",
+    "BaseUrl": "https://localhost:5000",
     "QoSOptions": {
       "ExceptionsAllowedBeforeBreaking": 5,
       "DurationOfBreak": 10000,
