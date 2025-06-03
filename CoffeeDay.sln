@@ -47,6 +47,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Menu.Infrastructure.Data", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Menu.WebApi", "src\MenuService\Menu.WebApi\Menu.WebApi.csproj", "{07A7ACCF-4991-4BA3-863C-BA4C7732E0E9}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tables", "Tables", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TablesWebApi", "src\TablesWebApi\TablesWebApi.csproj", "{A3C418DC-C9FE-4CF8-B4CD-550A2F3C3EB6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -123,6 +127,10 @@ Global
 		{07A7ACCF-4991-4BA3-863C-BA4C7732E0E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{07A7ACCF-4991-4BA3-863C-BA4C7732E0E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{07A7ACCF-4991-4BA3-863C-BA4C7732E0E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3C418DC-C9FE-4CF8-B4CD-550A2F3C3EB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3C418DC-C9FE-4CF8-B4CD-550A2F3C3EB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3C418DC-C9FE-4CF8-B4CD-550A2F3C3EB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3C418DC-C9FE-4CF8-B4CD-550A2F3C3EB6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -143,6 +151,7 @@ Global
 		{A6B3B304-9430-4035-9009-2B84B372E327} = {9925F708-0053-4603-88FD-F1B9C1F4362A}
 		{5CCBC811-393C-42E1-814B-2935CBEEC49A} = {9925F708-0053-4603-88FD-F1B9C1F4362A}
 		{07A7ACCF-4991-4BA3-863C-BA4C7732E0E9} = {9925F708-0053-4603-88FD-F1B9C1F4362A}
+		{A3C418DC-C9FE-4CF8-B4CD-550A2F3C3EB6} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B1F82666-8801-4357-A8AD-436C1910A7CF}

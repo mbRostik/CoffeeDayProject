@@ -15,6 +15,7 @@ import Menu from './Components/Menu/Menu';
 import Bag from './Components/Bag/Bag';
 import { BagProvider } from './Components/Bag/BagContext';
 import MainPageBookTable from './Components/MainPage/MainPageBookTable/MainPageBookTable.jsx';
+import BookTable from './Components/OrderTable/BookTable.jsx';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -29,7 +30,7 @@ function AppContainer() {
                     <div className="Centre">
                         <Routes>
                             
-                            <Route path="/order-table" element={<MainPageBookTable />} />
+                            <Route path="/order-table" element={<BookTable />} />
                             <Route path="/signin-oidc" element={<SignIn_CallbackPage />} />
                             <Route path="/signout-callback-oidc" element={<SignOut_CallBackPage />} />
                             <Route path="/profile" element={<Profile />} />
