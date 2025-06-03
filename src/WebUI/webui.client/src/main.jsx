@@ -12,6 +12,7 @@ import NavBar from './Components/NavBar/NavBar';
 import Profile from './Components/Profile/Profile';
 import ContactUs from './Components/ContactUs/ContactUs';
 import Menu from './Components/Menu/Menu';
+import AboutUs from './Components/AboutUs/AboutUs';
 import Bag from './Components/Bag/Bag';
 import { BagProvider } from './Components/Bag/BagContext';
 import MainPageBookTable from './Components/MainPage/MainPageBookTable/MainPageBookTable.jsx';
@@ -31,6 +32,7 @@ function AppContainer() {
                         <Routes>
                             
                             <Route path="/order-table" element={<BookTable />} />
+                            <Route path="/about-us" element={<AboutUs />} />
                             <Route path="/signin-oidc" element={<SignIn_CallbackPage />} />
                             <Route path="/signout-callback-oidc" element={<SignOut_CallBackPage />} />
                             <Route path="/profile" element={<Profile />} />
