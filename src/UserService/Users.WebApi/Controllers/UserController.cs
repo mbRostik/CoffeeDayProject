@@ -166,13 +166,13 @@ namespace Users.WebApi.Controllers
                         formData.Add(imageContent, "image", "avatar.jpg");
 
                         // Send request to detect_person endpoint
-                        var response = await _httpClient.PostAsync("http://127.0.0.1:5000/detect_person", formData);
+                        var response = await _httpClient.PostAsync("http://127.0.0.1:8000/predict/face", formData);
                         var responseString = await response.Content.ReadAsStringAsync();
 
                         if (response.IsSuccessStatusCode)
                         {
                             var jsonResponse = JsonDocument.Parse(responseString);
-                            bool isPerson = jsonResponse.RootElement.GetProperty("is_person").GetBoolean();
+                            bool isPerson = jsonResponse.RootElement.GetProperty("face_detected").GetBoolean();
 
                             if (!isPerson)
                             {

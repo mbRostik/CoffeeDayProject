@@ -10,6 +10,5 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="src\Components\MainPage\MainPageOurProducts\" />
-    <Folder Include="src\Components\Menu\" />
   </ItemGroup>
 </Project>

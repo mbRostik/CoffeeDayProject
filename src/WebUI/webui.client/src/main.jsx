@@ -12,6 +12,7 @@ import NavBar from './Components/NavBar/NavBar';
 import Profile from './Components/Profile/Profile';
 import ContactUs from './Components/ContactUs/ContactUs';
 import Menu from './Components/Menu/Menu';
+import Shop from './Components/Shop/Shop';
 import AboutUs from './Components/AboutUs/AboutUs';
 import Bag from './Components/Bag/Bag';
 import { BagProvider } from './Components/Bag/BagContext';
@@ -30,7 +31,7 @@ function AppContainer() {
                 <div className="Centre_Div">
                     <div className="Centre">
                         <Routes>
-                            
+                            <Route path="/shop" element={<Shop />} />
                             <Route path="/order-table" element={<BookTable />} />
                             <Route path="/about-us" element={<AboutUs />} />
                             <Route path="/signin-oidc" element={<SignIn_CallbackPage />} />

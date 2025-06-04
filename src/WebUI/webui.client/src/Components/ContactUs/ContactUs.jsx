@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import userManager from '../../AuthFiles/authConfig';
@@ -33,6 +33,9 @@ const ContactUs = () => {
     const [email, setEmail] = useState(null);
     const [name, setName] = useState(null);
 
+    const [popupMessage, setPopupMessage] = useState(null);
+    const [showPopup, setShowPopup] = useState(false);
+
 
     const handleSubmit = async () => {
         setIsSpamMessage(false);
@@ -55,19 +58,20 @@ const ContactUs = () => {
             });
 
             if (response.ok) {
-
                 setName(null);
                 setEmail(null);
                 setMessage(null);
+                setPopupMessage("✅ Your message has been sent successfully!");
+                setShowPopup(true);
             } else if (response.status === 400) {
                 setIsSpamMessage(true);
-            }
-            else {
+            } else {
                 throw new Error('Failed to send message');
             }
         } catch (error) {
             console.error('Error while sending message:', error);
-            alert('An error occurred while updating the prfefefefefefefefefeofile.');
+            setPopupMessage("❌ An error occurred while sending your message.");
+            setShowPopup(true);
         } finally {
             setLoadingState(false);
         }
@@ -129,6 +133,14 @@ const ContactUs = () => {
                                 )}
                             </form>
                         </div>
+                        {showPopup && (
+                            <div className="popup-overlay">
+                                <div className="popup-content">
+                                    <p>{popupMessage}</p>
+                                    <button onClick={() => setShowPopup(false)}>Close</button>
+                                </div>
+                            </div>
+                        )}
                 </div>
             )}
         </div>

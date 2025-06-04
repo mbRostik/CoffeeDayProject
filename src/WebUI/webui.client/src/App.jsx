@@ -13,7 +13,7 @@ function App() {
                 <div className="Coffee_Line_Text">Cooffee Day</div>
                 <div className="Coffee_Line_Text">Cooffee Day</div>
                 <div className="Coffee_Line_Text">Cooffee Day</div>
-                <div className="Coffee_Line_Text">Cooffee Day</div>Ö
+                <div className="Coffee_Line_Text">Cooffee Day</div>
             </div>
             <MainPageOurProducts />
 

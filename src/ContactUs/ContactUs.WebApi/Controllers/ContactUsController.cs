@@ -44,13 +44,14 @@ namespace ContactUs.WebApi.Controllers
                 var jsonPayload = JsonSerializer.Serialize(spamCheckPayload);
                 var content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
 
-                var spamResponse = await _httpClient.PostAsync("http://127.0.0.1:5000/predict_spam", content);
+                var spamResponse = await _httpClient.PostAsync("http://127.0.0.1:8000/predict/spam", content);
 
                 if (spamResponse.IsSuccessStatusCode)
                 {
                     var responseString = await spamResponse.Content.ReadAsStringAsync();
                     var responseJson = JsonDocument.Parse(responseString);
-                    var isSpam = responseJson.RootElement.GetProperty("prediction").GetString() == "spam";
+
+                    var isSpam = responseJson.RootElement.GetProperty("is_spam").GetBoolean();
 
                     if (isSpam)
                     {

@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import userManager from '../../AuthFiles/authConfig';
@@ -16,7 +16,9 @@ const Profile = () => {
         setIsAuthorizedState,
         setUserState,
         setUserDataState } = useAuth();
-
+    const [showPopup, setShowPopup] = useState(false);
+    const [popupMessage, setPopupMessage] = useState('');
+    const [isSuccess, setIsSuccess] = useState(false);
     const [isNoPersonWarning, setIsNoPersonWarning] = useState(false);
 
     useEffect(() => {
@@ -128,21 +130,34 @@ const Profile = () => {
                                 },
                                 body: JSON.stringify({ avatar: base64Avatar })
                             });
-                            if (!response.ok && response.status === 400) {
+
+                            if (response.status === 400) {
                                 setIsNoPersonWarning(true);
-                            } else {
+                                setPopupMessage('🚫 No person detected in the uploaded photo.');
+                                setIsSuccess(false);
+                                setShowPopup(true);
+                            } else if (response.ok) {
                                 const data = await response.json();
                                 setUserDataState(data);
-                                setIsNoPersonWarning(false); 
+                                setIsNoPersonWarning(false);
+                                setPopupMessage('✅ Profile photo uploaded successfully!');
+                                setIsSuccess(true);
+                                setShowPopup(true);
+                            } else {
+                                setPopupMessage('❌ Failed to upload the photo.');
+                                setIsSuccess(false);
+                                setShowPopup(true);
                             }
 
-
                         } catch (err) {
-                           
                             console.error('Error while sending the request', err);
+                            setPopupMessage('❗ Unexpected error while uploading.');
+                            setIsSuccess(false);
+                            setShowPopup(true);
                         } finally {
                             setLoadingState(false);
                         }
+
                     };
                     reader.readAsArrayBuffer(file);
                 }
@@ -284,9 +299,17 @@ const Profile = () => {
                                 <div onClick={handleSave} className="Brown_Profile_Button">Save Changes</div>
                             </div>
                             
-
+                    {showPopup && (
+                        <div className="popup-overlay">
+                            <div className="popup-box">
+                                <h3>{isSuccess ? '✅ Success' : '❌ Error'}</h3>
+                                <p>{popupMessage}</p>
+                                <button onClick={() => setShowPopup(false)}>Close</button>
+                            </div>
                         </div>
-
+                    )}
+                        </div>
+    
 
             )}
             <div>
